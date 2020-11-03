@@ -16,8 +16,9 @@ requestsent();
 
 
 async function requestsent () {
+    var i = Math.floor(Math.random() * 100) + 1
     console.time(i);
     request(user_request, function (error, response, body) {
-        console.timeEnd(i++);
+        console.timeEnd(i);
     });
   }
