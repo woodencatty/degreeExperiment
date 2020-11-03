@@ -17,4 +17,4 @@ setInterval(() => {
         console.log(i);
         i++;
       });
-}, 100);
+}, 10);
