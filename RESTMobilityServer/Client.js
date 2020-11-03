@@ -15,4 +15,4 @@ setInterval(() => {
         console.timeEnd(i++);
     });
 
-}, 100);
+}, 10);
