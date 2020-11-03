@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=medium-dpi" name="viewport">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>서울자전거 따릉이 - 무인대여시스템</title>
+<link href="/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.12.4.js"></script> 
+<script type="text/javascript" src="/js/jquery-ui.js"></script>
+<script type="text/javascript" src="/js/easing/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="/js/gibberish-aes.js"></script>
+<script type="text/javascript" src="/js/jquery.simpler-sidebar.min.js"></script>
+<script type="text/javascript" src="/js/jquery-confirm.js"></script>
+<script type="text/javascript" src="/js/comm.js"></script>
+<script type="text/javascript" src="/js/common_spb.js"></script>
+
+<link rel="stylesheet" href="/css/style_kr_v2.css?ver=0903" type="text/css">
+<link rel="stylesheet" href="/css/common.css" type="text/css">
+<link rel="stylesheet" href="/css/jquery-confirm.css">
+<!--[if lt IE 9]>
+<link href="/css/pw.css" title="ie8chn" rel="stylesheet" type="text/css" />
+<script src="/js/html5.js"></script>
+<script src="/js/respond.min.js"></script>
+<![endif]-->
+<script src="/js/select/jquery.styled-select-box_main.js"></script>
+<script type="text/javascript" src="/js/tracerapi.js"></script>
+<script type="text/javascript">
+	function showRealPage() {
+	    $("#waitPage").css("display","none");
+	}
+	
+	function showWaitPage(type) {
+	    $("#waitPage").css("display","block");
+	
+	    $("#isWaitPage").css("display","none");
+	    $("#isRejectPage").css("display","none");
+		 $("isNotUse").css("display","none");
+	
+	
+	    if ( type == 'W' ) {
+	        $("#isWaitPage").css("display","block");
+	    } else if ( type == 'NE' ) {
+	        $("#isNotUse").css("display","block");
+	    } else if ( type == 'R' ) {
+	        $("#isRejectPage").css("display","block");
+	    }
+	}
+	
+	function checkAPI2() {
+	    var host="app.bikeseoul.com";
+	    var loginId= "127.0.0.1";
+	    var port="80";
+	    var pageUrl="myLeftPage.do";
+	    var ip = "127.0.0.1";
+	
+	    callTracerApiInput(host, ip, loginId, port, pageUrl, this);
+	}
+	
+	
+	function checkAPI() {
+	var host="app.bikeseoul.com";
+	    var loginId= "127.0.0.1";
+	    var port="80";
+	    var pageUrl="myLeftPage.do";
+	    var ip = "127.0.0.1";
+	
+	    callTracerApiInput(host, ip, loginId, port, pageUrl, this);
+	}
+	
+	function callBackTracer() {
+		//alert("나는이용자");
+	}
+</script>
+</head>
+<body>
+
+<div class="wrap myleft" id="sub">
+	<!--웹 : 헤더추가-->
+    <div class="header_wrap">
+        <div class="header">
+        	<div class="top">
+				<div class="m_sub_header_wrap">
+					<div class="m_sub_header">
+						<button class="back"></button>
+						<button class="close"></button>
+						<span id="title"></span>
+					</div>
+					<!-- //.m_sub_header -->
+				</div>
+				<!-- //.m_sub_header_wrap -->
+			
+        		<div class="m_menu">메뉴열기</div>
+				<div class="m_global">언어선택</div>
+				<div class="info"><a href="/info/infoReg.do">이용안내</a></div>
+				<div class="alim"><a href="/app/mybike/getPushHistory.do">알림</a></div>
+				<a class="join" href="/app/mybike/getMemberUseHistory.do?appOsType=">나의 공간</a>
+						<a class="login" href="/logout.do">
+							로그아웃</a> 
+					<div class="global" id="changeLang">
+					<ul>
+						<li class="en"><a href="https://www.bikeseoul.com:457/main.do?lang=en&appOsType=android">ENGLISH</a></li>
+							    <li class="ch"><a href="https://www.bikeseoul.com:457/main.do?lang=zh&appOsType=android">中國語</a></li>
+							    <li class="ja"><a href="https://www.bikeseoul.com:457/main.do?lang=ja&appOsType=android">日本語</a></li>
+							    <li class="ko"><a href="https://www.bikeseoul.com:456/main.do?lang=ko&appOsType=android">한국어</a></li>
+							</ul>
+				</div>
+				
+				
+			</div>
+			<!-- 모바일 화면 -->
+			<div class="logo"><a href="/main.do"><img src="/images/logo.png" alt="서울자전거 따릉이"></a></div>
+            
+            <!--메뉴(웹)-->
+            <div class="menu_web">
+                <ul>
+                    <li><a href="/main.do#bike_info">사업소개</a></li>
+                    <li><a href="/app/station/moveStationRealtimeStatus.do">대여소 조회</a></li>
+                    <li><a href="/app/ticket/member/buyTicketList.do">이용권 구매</a></li>
+                    <li><a href="/customer/opinionBoard/opinionBoardList.do">문의/FAQ</a></li>
+                    <li><a href="/customer/notice/noticeList.do">공지사항</a></li>
+                    <li><a href="/customer/faq/faqList.do">안전수칙</a></li>
+                </ul>
+            </div>
+            <!--메뉴(웹)--> 
+        </div>
+        <div class="bike_tap">
+		  	<ul>
+				<li class="first"><span id="all">전체</span></li>
+				<li class="second"><span id="lcd">LCD형<br>따릉이</span></li>
+				<li class="third"><span id="qr">QR형<br>뉴따릉이</span></li>
+				</ul>
+		</div>
+		<div class="remarks">
+			<ul>
+				<li class="title">대여소</li>
+				<li class="place01">LCD형,&nbsp;QR형<br>따릉이&nbsp;반납가능</li>
+				<li class="place02">QR형&nbsp;뉴따릉이&nbsp;전용<br><span class="lcd">(LCD형&nbsp;반납불가)</span></li>
+			</ul>
+		</div> 
+		<!-- //remarks -->
+    </div>
+    <!--웹 : 헤더추가--></div>
+
+<div class="container">
+	<div class="content">
+		<div class="cbp-spmenu">
+			<div id="waitPage" style="z-index: 98; display:none;">
+				<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+<style>
+
+	body{font-family:"Open Sans", sans-serif;background-size:cover;}
+		#waitBackground{position:absolute;background-color:rgba(0,0,0,0.4);width:100%;height:100%;z-index:20000;top:0;}
+		@media (max-width :420px) {
+			body{
+				background-position:50%;
+				
+			}
+			.login-containerT{width:100%!important;
+			
+			}
+			.mobile-size {
+				width:90%!important;
+				margin: 0 auto;
+				
+			}
+			.text-center h3 {
+				margin-top: 52px!important;
+				font-size: 20px!important;
+			}
+			.hpanel {
+				margin-top: 20px!important;
+				padding: 16px 0 16px 0!important;	
+
+			}
+			.sub_text {
+				font-size:0.8em!important;			
+			}
+			#loading3 {
+				width:70%!important;
+			}
+			.main_logo {
+				right:50%!important;
+				transform: translate(50%)!important;	
+			}
+			.main_logo img {
+				width: 110px!important;
+				height: auto!important;
+			}
+			
+
+
+
+		}
+		.login-containerT{max-width:none;width:560px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:20001;}
+
+		.login-containerT, .row, .col-md-12, .hpanel{margin:0;padding:0;}
+		.panel-bodyT{text-align:center;padding:0px 2it_default.jsp0px 10px!important;border-radius:0;}
+		
+		#boxHeadLine{background:#4486d4;width:100%;height:4px;}
+		#wait_value{
+			color:#1e1e1e;
+			font-weight:bold;
+			font-size:1.2em;
+			margin: 0 0 20px 0;
+			
+		}
+		
+		#loading3{display:flex;width:50%;justify-content:space-between;margin:30px auto 49px;}
+	    #loading3>div{width:8px;height:40px;margin-right:7px;background-color:#033074;border-radius: 3px;
+	        -webkit-animation:strechdelay 1.5s ease-in-out infinite;
+	        animation:strechdelay 1.5s ease-in-out infinite;
+	    }
+	    #loading3 .line2{
+	        -webkit-animation-delay:-1.4s;
+	        animation-delay:-1.4s;
+	    } #loading3 .line3{
+	        -webkit-animation-delay:-1.3s;
+	        animation-delay:-1.3s;
+	    }#loading3 .line4{
+	        -webkit-animation-delay:-1.2s;
+	        animation-delay:-1.2s;
+	    }#loading3 .line5{
+	        -webkit-animation-delay:-1.1s;
+	        animation-delay:-1.1s;
+	    }#loading3 .line6{
+	        -webkit-animation-delay:-1.0s;
+	        animation-delay:-1.0s;
+	    }#loading3 .line7{
+	        -webkit-animation-delay:-0.9s;
+	        animation-delay:-0.9s;
+	    }#loading3 .line8{
+	        -webkit-animation-delay:-0.8s;
+	        animation-delay:-0.8s;
+	    }#loading3 .line9{
+	        -webkit-animation-delay:-0.7s;
+	        animation-delay:-0.7s;
+	    }#loading3 .line10{
+	        -webkit-animation-delay:-0.6s;
+	        animation-delay:-0.6s;
+	    }#loading3 .line11{
+	        -webkit-animation-delay:-0.5s;
+	        animation-delay:-0.5s;
+	    }#loading3 .line12{
+	        -webkit-animation-delay:-0.4s;
+	        animation-delay:-0.4s;
+	    }#loading3 .line13{
+	        -webkit-animation-delay:-0.3s;
+	        animation-delay:-0.3s;
+	    }#loading3 .line14{
+	        -webkit-animation-delay:-0.2s;
+	        animation-delay:-0.2s;
+	    }#loading3 .line15{
+	        -webkit-animation-delay:-0.1s;
+	        animation-delay:-0.1s;
+	    }#loading3 .line16{
+	        -webkit-animation-delay:-0.0s;
+	        animation-delay:-0.0s;
+	    }
+	    
+	    @keyframes strechdelay{
+	        0%,50%,100%{
+	            transform:scaleY(.7);
+	        }
+	        20%{
+	            transform:scaleY(1);
+	            background-color:#2d69c2;
+	        }
+	    }
+	
+	    @-webkit-keyframes strechdelay{
+	        0%,50%,100%{
+	            -webkit-transform:scaleY(.7);
+	        }
+	        20%{
+	            -webkit-transform:scaleY(1);
+	            background-color:#72a5f5;
+	        }
+	    }
+	</style>
+
+<script type="text/javascript">
+
+function checkCntData() {
+    var host = this_host;
+    var ip =  this_ip;
+    var loginId = this_loginId;
+    var port = this_port;
+    var pageUrl = this_pageUrl;
+    var sendThis = this_sendThis
+
+    callTracerApiInputData(host, ip, loginId, port, pageUrl, sendThis);
+
+    var waitCnt = this_waitCnt;
+	
+    if ( waitCnt == "0" || waitCnt == "E") {
+      showRealPage();
+      callBackTracer();
+    } else {
+         var $el = $("#wait_value");
+         var waitCnt = this_waitCnt;
+	 if ( $.isNumeric(waitCnt) ) {
+	     $el.html("고객님의 대기열은 <span style=\"font-size:22px;color:red;font-weight:bold;\">"+comma(Math.floor(waitCnt))+"</span> 명입니다.");
+	} else {
+	  // alert("AAA"+opener.this_waitCnt+"AAA");
+
+	}
+    }
+
+}
+
+playAlert = setInterval(function() {
+    if ( this_isWait == "T" ) {
+	 checkCntData();
+    } 
+}, 1000);
+
+$(document).ready(function() {
+    var $el = $("#wait_value");
+    $el.html("고객님의 대기열을 확인중입니다.");
+    //checkCntData();
+});
+
+
+function createCookie() {
+	var now = new Date();
+	  var time = now.getTime();
+	  var expireTime = time + 1000*36000;
+	  now.setTime(expireTime);
+	  var tempExp = 'Wed, 31 Oct 2020 08:50:17 GMT';
+	  document.cookie = 'SESSIONID=hjpark123;expires='+now.toGMTString()+';path=/';
+	  //console.log(document.cookie);
+}
+
+
+/* setInterval(function() {
+	window.location.href='login.do';
+		}, 20000); */
+
+function comma(num){
+    var len, point, str; 
+       
+    num = num + ""; 
+    point = num.length % 3 ;
+    len = num.length; 
+   
+    str = num.substring(0, point); 
+    while (point < len) { 
+        if (str != "") str += ","; 
+        str += num.substring(point, point + 3); 
+        point += 3; 
+    } 
+     
+    return str;
+}
+</script>
+
+</head>
+<body class="blank">
+
+<form id="listForm" method="POST" class="mt-repeater form-horizontal" action="">
+</form>
+<div class="login-containerT" style="">
+    <div class="row" id="isWaitPage" style="display:none">
+	<div class="mobile-size" style="border: 4px solid #033074;width:100%;height:auto;overflow:hidden;">
+        <div class="col-md-12" style="width:100%;height:auto;background:#fff;border: 8px solid #d0dcea;">
+		<div class="main_logo"style="position:absolute;right:2%;top:12px;"> <img src="/images/logo2.png" style="width:90px;height:auto;margin-top: 10px;"> </div>
+        	<div class="text-center" style="padding-top:20px;"></div>
+            <div class="text-center m-b-md">
+                <h3 style="font-weight:bold;font-size:22px;color:#033074;margin-top:5px;letter-spacing: -0.04em;text-align: center;">서비스 접속 대기 중입니다. </h3>
+            </div>
+		<div id="loading3" style="margin-bottom:30px;">
+                                                <div class="line1"></div><div class="line2"></div><div class="line3"></div><div class="line4"></div>
+                                                <div class="line5"></div><div class="line6"></div><div class="line7"></div><div class="line8"></div>
+                                                <div class="line9"></div><div class="line10"></div><div class="line11"></div><div class="line12"></div>
+                                                <div class="line13"></div><div class="line14"></div><div class="line15"></div><div class="line16"></div>
+                                        </div>
+
+            <div class="hpanel" style="width:88%;margin: 0 auto;background:#d0dcea;padding: 14px 0 14px 0;margin-top:20px;">
+                <div class="panel-bodyT" style="border:none;">
+			<div id="wait_value"></div>
+                    
+                   <div class="sub_text"style="letter-spacing: -0.04em;font-weight:600;font-size:0.8em;color:#1e1e1e;padding: 0 20px 0 20px;">현재 접속 사용자가 많아 대기중이며, 잠시만 기다리시면 자동 접속됩니다.</div>
+		
+                </div>
+            </div>
+		<div style="text-align:right;padding:10px 10px 6px;font-size:10px;opacity:0.8;">TRACER - Copyright 2018-2020 WELLCONN Corp.</div>
+        </div>
+	</div>
+    </div>
+
+
+	<div class="row" id="isRejectPage" style="display:none">
+	<div class="mobile-size" style="border: 4px solid #033074;width:100%;height:auto;overflow:hidden;">
+        <div class="col-md-12" style="width:100%;background:#fff;border: 8px solid #d0dcea;">
+		<div class="main_logo" style="position:absolute;right:2%;top:12px;"> <img src="/images/logo2.png" style="width:90px;height:auto;margin-top: 10px;"> </div>
+        	<div class="text-center" style="padding-top:20px;"></div>
+            <div class="text-center m-b-md">
+                <h3 style="font-weight:bold;font-size:22px;color:#033074;margin-top:5px;letter-spacing: -0.04em;text-align: center;">서비스 접속이 차단 되었습니다. </h3>
+            </div>
+            <div class="hpanel" style="width:88%;margin: 0 auto;background:#d0dcea;padding: 16px 0 16px 0;margin-top:0px;">
+                <div class="panel-bodyT" style="border:none;">
+			<div id="wait_value2"></div>
+                   <div class="sub_text"style="letter-spacing: -0.04em;font-weight:600;font-size:1.0em;color:#1e1e1e;">현재 접속하신 아이피에서는<br> 접속이 불가능합니다.</div>
+                </div>
+            </div>
+		<div style="text-align:right;padding:16px 10px 6px;font-size:10px;opacity:0.8;">TRACER - Copyright 2018-2020  WELLCONN Corp.</div>
+        </div>
+	</div>
+    </div>
+
+	<div class="row" id="isNotUse" style="display:none">
+	<div class="mobile-size" style="border: 4px solid #033074;width:100%;height:auto;overflow:hidden;">
+        <div class="col-md-12" style="width:100%;background:#fff;border: 8px solid #d0dcea;">
+		<div class="main_logo" style="position:absolute;right:2%;top:12px;"> <img src="/images/logo2.png" style="width:90px;height:auto;margin-top: 10px;"> </div>
+        	<div class="text-center" style="padding-top:20px;"></div>
+            <div class="text-center m-b-md">
+                <h3 style="font-weight:bold;font-size:22px;color:#033074;margin-top:5px;letter-spacing: -0.04em;text-align: center;">서비스 접속이 불가합니다. </h3>
+            </div>
+            <div class="hpanel" style="width:88%;margin: 0 auto;background:#d0dcea;padding: 16px 0 16px 0;margin-top:0px;">
+                <div class="panel-bodyT" style="border:none;">
+			<div id="wait_value2"></div>
+                   <div class="sub_text"style="letter-spacing: -0.04em;font-weight:600;font-size:1.0em;color:#1e1e1e;">접속량이 많아 접속이 불가능합니다.<br> 잠시 후 다시 접속해주세요</div>
+                </div>
+            </div>
+		<div style="text-align:right;padding:16px 10px 6px;font-size:10px;opacity:0.8;">TRACER - Copyright 2018-2020  WELLCONN Corp.</div>
+        </div>
+	</div>
+    </div>
+
+
+</div>
+<div id="waitBackground"></div>
+</body>
+</html>
+</div>
+			<div class="my_menu">
+				<div class="head">
+					<!-- <a class="login" href="/app/mybike/getPushHistory.do">알람</a>  -->
+					<button class="close"></button>
+					<a class="backBtn" id="backBtn" style="display: none"></a>
+					<dl class="profile">
+						<dd class="top_img"><img src="img/mypage_top_pic.png" alt=""></dd>
+						<dd class="user_title">USER</dd>
+						<dd class="name">
+							<span>woodencatty</span><span style="display:none">temp</span>
+								</dd>
+					</dl>
+				</div>
+				<form name='leftForm' method="POST">
+					<input type="hidden" id="ostype" name="appOsType"  value="web"/> 
+					<input type="hidden" id="usrDeviceId" name="usrDeviceId" /> 
+				</form>
+				<!-- 회원 정보 및 관리 시작 -->
+				<div id="main_div">
+					<div class="my_list">
+								<dl class="my_info">
+									<dd class="pic"><img src="img/mypage_icon_01.png"></dd>  
+									<dd class="title">이용권 유효기간</dd>	<!-- 이용권 유효기간 -->
+									<dd class="result"><span>2020-10-31 12:01</span></dd>
+								</dl>
+								<dl class="my_info">
+									<dd class="pic"><img src="img/mypage_icon_02.png"></dd>  
+									<dd class="title">마일리지</dd>
+									<dd class="result"><span>0</span></dd>
+								</dl>
+								<dl class="my_info">
+									<dd class="pic"><img src="img/mypage_icon_03.png"></dd>
+									<dd class="result">
+										<a href="/app/mybike/moveMemberCardRegiView.do?card=Trans" class="yesresult">
+											환승카드 관리</a>
+									</dd>
+									<dd class="pic"><img src="img/mypage_icon_03.png"></dd>
+									<dd class="result">
+										<a href="/app/mybike/moveMemberCardRegiView.do" class="yesresult">
+											대여카드 관리</a>
+									</dd>
+								</dl>
+								</div>
+							<ul class="tabs">
+								<a href="/app/mybike/favoriteStation.do">
+									<li>
+										<div class="mcon">
+											<div class="sub_menu_icon"> 
+												<img src="img/main_icon_01.png" alt="">
+											</div>     
+											즐겨찾는 대여소<!-- 즐겨찾는 대여소 -->
+										</div>
+									</li>
+								</a>
+								<li>
+									<div class="mcon" id="ticket_info">
+										<div class="sub_menu_icon"> 
+											<img src="img/main_icon_02.png" alt="">
+										</div>     
+										이용권 구매<!-- 이용권 구매 -->
+									</div>
+								</li>
+								<li>
+									<div class="mcon" id="member_info">
+										<div class="sub_menu_icon"> 
+											<img src="img/main_icon_03.png" alt="">
+										</div>
+										회원정보 관리<!-- 회원정보 관리 -->
+									</div>
+								</li>
+								<li>
+									<div class="mcon" id="pay_info">
+										<div class="sub_menu_icon"> 
+											<img src="img/main_icon_04.png" alt="">
+										</div>     
+										결제 관리<!-- 결제 관리 -->
+									</div>
+								</li>
+								<li>
+									<div class="mcon" id="use_info">
+										<div class="sub_menu_icon"> 
+											<img src="img/main_icon_05.png" alt="">
+										</div>     
+										이용정보 관리<!-- 이용정보 관리 -->
+									</div>
+								</li>
+								<a href="/app/err/moveBikeParkingLocation.do">
+									<li>
+										<div class="mcon">
+											<div class="sub_menu_icon"> 
+												<img src="img/main_icon_06.png" alt="">
+											</div>     
+											방치 신고<!-- 방치신고 -->
+										</div>
+									</li>
+								</a>
+								<a href="/app/err/moveErrReportPage.do">
+									<li>
+										<div class="mcon">
+											<div class="sub_menu_icon"> 
+												<img src="img/main_icon_07.png" alt="">
+											</div>     
+											고장(장애)신고<!-- 고장신고 -->
+										</div>
+									</li>
+								</a>
+								
+							</ul>
+						</div>
+				
+				<div id="ticket_div" style="display: none">
+					<div class="my_list">
+						<p class="sub_m_title">이용권 구매</p>	<!-- 이용권 구매 -->
+					</div>
+					<ul class="tabs">
+						<a href="/app/ticket/member/getSeasonTicketPayInfo.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/ticket_icon_01.png" alt="">
+									</div>
+									정기권<!-- 정기권 -->
+								</div>
+							</li>
+						</a>
+						<a href="/app/ticket/member/getDayTicketPayInfo.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/ticket_icon_02.png" alt="">
+									</div>
+									일일권<!-- 일일권 -->
+								</div>
+							</li>
+						</a>
+						<a href="/app/ticket/member/getSeasonTicketGiftInfo.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/ticket_icon_03.png" alt="">
+									</div>
+									정기권<br>
+									선물하기<!-- 정기권 선물  -->
+								</div>
+							</li>
+						</a>
+						<a href="/app/ticket/member/getDayTicketGiftInfo.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/ticket_icon_04.png" alt="">
+									</div>
+									일일권<br>
+									선물하기<!-- 일일권 선물  -->
+								</div>
+							</li>
+						</a>
+						<a href="/app/ticket/member/getGroupTicketPayInfo.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/ticket_icon_05.png" alt="">
+									</div>
+									단체권<!-- 단체권  -->
+								</div>
+							</li>
+						</a>
+					</ul>
+				</div>
+				<div id="member_div" style="display: none">
+					<div class="my_list">
+						<p class="sub_m_title">회원정보 관리</p>
+					</div>
+					<ul class="tabs">
+						<a href="/app/mybike/moveMemberCardRegiView.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/member_icon_01.png" alt="">
+									</div>
+									카드등록(대여, 환승)<!-- 카드등록(대여, 환승) -->
+								</div>
+							</li>
+						</a>
+						<a href="/app/mybike/moveRentPasswordChangeView.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/memberInfo_02.png" alt="">
+									</div>     
+									대여비밀번호 등록/변경<!-- 대여비밀번호 등록 /변경 -->
+								</div>
+							</li>
+						</a>
+						<a href="/app/mybike/getPushHistory.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/memberInfo_03.png" alt="">
+									</div>
+									알림관리<!-- 알람관리 -->
+								</div>
+							</li>
+						</a>
+						<a href="/app/mybike/memberOpinion/memberOpinionList.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/member_icon_04.png" alt="">
+									</div>     
+									상담내역<!-- 상담내역 -->
+								</div>
+							</li>
+						</a>
+						<a href="/customer/opinionBoard/opinionBoardList.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/member_icon_05.png" alt="">
+									</div>     
+									시민의견등록<!-- 시민의견등록 -->
+								</div>
+							</li>
+						</a>
+						<a href="/app/mybike/memberInfo/memberInfoEdit.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/member_icon_06.png" alt="">
+									</div>     
+									개인정보수정<!-- 개인정보수정 -->
+								</div>
+							</li>
+						</a>
+						<a href="/app/mybike/setSnsLoginInfo.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/member_icon_07.png" alt="">
+									</div>     
+									sns 로그인 연동 설정</div>
+							</li>
+						</a>
+						<a href="/app/mybike/memberInfo/memberSecede.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/member_icon_08.png" alt="">
+									</div>     
+									회원탈퇴<!-- 회원탈퇴 -->
+								</div>
+							</li>
+						</a>
+					</ul>
+				</div>
+				<div id="pay_div" style="display: none">
+					<div class="my_list">
+						<p class="sub_m_title">결제 관리</p>	<!-- 결제 관리 -->
+					</div>
+					<ul class="tabs">
+						<a href="/app/mybike/payhistory/getPayHistory.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/pay_icon_01.png" alt="">
+									</div>     
+									결제 내역<!-- 결제 내역 -->
+								</div>
+							</li>
+						</a>
+						<a href="/app/ticket/guest/getTicketNonPayInfo.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/pay_icon_02.png" alt="">
+									</div>     
+									추가과금결제<!-- 추가과금결제 -->
+								</div>
+							</li>
+						</a>
+						<a href="/app/mybike/addpay/moveAddPayMethod.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/pay_icon_03.png" alt="">
+									</div>
+									추가과금 수단변경<!-- 추가과금 수단변경  -->
+								</div>
+							</li>
+						</a>
+						<a href="/app/mybike/refund/refundList.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/pay_icon_04.png" alt="">
+									</div>     
+									환불내역<!-- 환불내역   -->
+								</div>
+							</li>
+						</a>
+					</ul>
+				</div>
+				<div id="use_div" style="display: none">
+					<div class="my_list">
+						<p class="sub_m_title">이용정보 관리<!-- 이용정보관리   --></p>
+					</div>
+					<ul class="tabs">
+						<a href="/app/mybike/getMemberUseHistory.do" class="yesresult">	
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/use_icon_01.png" alt="">
+									</div>     
+									대여반납이력<!-- 대여반납이력    -->
+								</div>
+							</li>
+						</a>
+						<a href="/app/mybike/coupon/couponList.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/use_icon_02.png" alt="">
+									</div>     
+									이용권 내역<!-- 이용권내역 -->
+								</div>
+							</li>
+						</a>
+						<a href="/app/mybike/milehistory/getMileHistory.do" class="yesresult">
+							<li>
+								<div class="mcon">
+									<div class="sub_menu_icon"> 
+										<img src="img/use_icon_03.png" alt="">
+									</div>     
+									환승마일리지(적립내역)<!-- 환승마일리지 (적립내역) -->
+								</div>
+							</li>
+						</a>
+						</ul>
+				</div>
+				
+				<div id="help_div" style="display: none">
+					<div class="help_desk help">
+						따릉이&nbsp;공지사항 및 게시판<span class="tel">1599-0120</span>
+					</div>
+				
+					<ul class="help">
+						<a href="/customer/notice/noticeList.do"><li>공지사항</li></a><!-- 공지사항 -->
+						<a href="/app/use/moveUseMenuInsurance.do"><li>보험안내</li></a><!-- 보험안내 -->
+						<a href="/customer/faq/faqList.do"><li>안전수칙</li></a><!-- 안전수칙/FAQ -->
+						<a href="/customer/opinionBoard/opinionBoardList.do"><li>문의/FAQ</li></a><!-- 시민의견수렴 -->
+						<a href="javascript:goCateList('FAQ_005');"><li>대여소 설치건의</li></a> 
+						<a href="/app/use/moveUseMenuClauseInfo.do"><li>이용약관</li></a><!-- 이용약관 -->
+						<a href="/info/infoResume.do"><li>사업소개</li></a><!-- 사업소개 -->
+					</ul>
+				</div>
+				
+				<!-- 하단 이용안내 시작 -->
+				<a href="/info/infoReg.do"> 
+					<div class="bike_guide">
+						따릉이&nbsp;이용안내</div>
+				</a>
+				<!-- //bike_guide -->
+
+				<div class="help_desk" id="help_info">
+					따릉이&nbsp;공지사항 및 게시판</div>
+				<!-- //bike_guide -->
+				
+				<div class="logout_n">
+							<span class="pic">
+								<a href="/logout.do">
+									로그아웃</a>
+								<span class="tel">
+									☎1599-0120</span>
+							</span>
+						</div>
+					<!-- 하단 이용안내 끝 -->                   
+			</div>
+		</div>
+	</div>
+</div>
+<form id="frm">
+            	<input type="hidden" id="cateCD" name="cateCD" value="" />
+            </form>
+<!--footer-->
+    <div class="footer_wrap">
+        <div class="footer">
+        	<div class="left">
+            <ul>
+                <!--<li><a href="">개인정보처리방침</a></li>
+                <li class="line"><a href="">이메일주소무단수집거부</a></li>-->
+                <li><a href="/app/use/moveUseMenuClauseInfo.do">이용약관</a></li>
+                <li class="line"><a href="/app/use/moveUseMenuClauseInfo.do?tabInfo=2">개인정보처리방침</a></li>
+                <li class="line"><a href="/app/use/moveUseMenuInsurance.do">보험안내</a></li>
+                <li class="line"><a href="/customer/donor/donorList.do">도움주신 분</a></li>
+                            
+            </ul>
+            <p>서울특별시 중구 세종대로 110 서울특별시 대표자 서정협, Tel : 1599-0120 (사업자등록번호 : 104-83-00469) 우편번호 04524</p>
+            <p>COPYRIGHT ⓒ 2018 bikeseoul All RIGHTS RESERVED.</p>
+            </div>
+            <dl>
+                <dt>sns</dt>
+                <dd class="face" onclick="javascript:moveSnsViewPage('snsFacebook')"><a href="#" id="snsFacebook"> </a></dd>
+                <dd class="twit" onclick="javascript:moveSnsViewPage('snsTweeter')"><a href="#" id="snsTweeter"> </a></dd>
+            </dl>
+        </div>
+    </div>
+<!--footer-->
+
+<script type="text/javascript">
+
+$(function() {
+    $(".back").on("click", goBack);
+});
+
+$(function() {
+    $(".back.left").on("click", goBackLeft);
+});
+
+$(function() {
+    $(".back.right").on("click", goBackRight);
+});
+
+$(function() {
+    $(".pwback").on("click", goBack);
+});
+$(function() {
+    $(".close").on("click", goHome);
+});
+$(function() {
+    $(".logo").on("click", goHome);
+});
+$(function() {
+    $(".alim").on("click", goAlim);
+});
+$(function() {
+    //$("#changeLang").on("click", changeLang);
+});
+function osInfo(pOSobj){
+    var obj = JSON.parse(pOSobj);
+    window.osType = obj.osInfo;
+    
+    //대여소 찿기 PDF 버튼 숨기기.
+    if($("#pdfDiv") !== 'undefined') {
+	    $("#pdfDiv").css("display","none");
+    }
+};
+
+function goBack(e) {
+	//e.preventDefault();
+    //alert("2->"+e.type +":"+ window.osType);
+    window.osType = 'android';
+    //alert(window.osType);
+    switch(window.osType){
+    case "web" :
+    	window.history.go(-1);      
+        break;
+    case "android" :
+        window.android.goBack();
+        break;
+    case "ios" : 
+        window.location = 'toApp://?{"call":"goBack"}';
+        break;
+    case "" :
+    	window.history.go(-1);      
+        break;
+    }
+}
+
+function goBackLeft(e) {
+    //e.preventDefault();
+    //alert("2->"+e.type +":"+ window.osType);
+   /*  switch(window.osType){
+    case "web" :
+        window.location.href='/main.do';     
+        break;
+    case "android" :
+    	window.location.href='/main.do';
+        break;
+    case "ios" : 
+    	window.location.href='/main.do';
+        break;
+    case "" :
+    	window.location.href='/main.do';      
+        break;    
+    } */
+}
+
+function goBackRight(e) {
+    //e.preventDefault();
+    //alert("2->"+e.type +":"+ window.osType);
+    /* switch(window.osType){
+    case "web" :
+        window.location.href='/main.do';     
+        break;
+    case "android" :
+    	window.location.href='/main.do';
+        break;
+    case "ios" : 
+    	window.location.href='/main.do';
+        break;
+    case "" :
+    	window.location.href='/main.do';      
+        break;    
+    } */
+	/* switch(window.osType){
+    case "web" :
+    	window.history.go(-1);      
+        break;
+    case "android" :
+        window.android.goBack();
+        break;
+    case "ios" : 
+        window.location = 'toApp://?{"call":"goBack"}';
+        break;
+    case "" :
+    	window.history.go(-1);      
+        break;
+    } */
+}
+
+function goHome(e) {
+	setCookie("step", 0);
+    //e.preventDefault();
+    //alert("2->"+e.type +":"+ window.osType);
+    switch(window.osType){
+    case "web" :
+        window.location.href='/main.do';     
+        break;
+    case "android" :
+    	window.location.href='/main.do';
+        break;
+    case "ios" : 
+    	window.location.href='/main.do';
+        break;
+    case "" :
+    	window.location.href='/main.do';      
+        break;    
+    }
+}
+
+function goAlim(e) {
+    //e.preventDefault();
+    //alert("2->"+e.type +":"+ window.osType);
+    switch(window.osType){
+    case "web" :
+        window.location.href='/app/mybike/getPushHistory.do';     
+        break;
+    case "android" :
+    	window.location.href='/app/mybike/getPushHistory.do';
+        break;
+    case "ios" : 
+    	window.location.href='/app/mybike/getPushHistory.do';
+        break;
+    case "" :
+        window.location.href='/app/mybike/getPushHistory.do';     
+        break;    
+    }
+}
+
+function changeLang(e) {
+	var lang = 'en'
+
+	switch(window.osType){
+    case "web" :
+        window.location.href='/main.do?lang='+lang;     
+        break;
+    case "android" :
+    	window.location.href='/main.do?lang='+lang;
+        break;
+    case "ios" : 
+    	window.location.href='/main.do?lang='+lang;
+        break;
+    case "" :
+        window.location.href='/main.do?lang='+lang;     
+        break;    
+    }
+}
+
+function moveSnsViewPage(flag){
+			
+	var tUrl = "";
+	if(flag === 'snsFacebook') {
+		tUrl = "https://www.facebook.com/seoulbike";
+    } else {
+    	tUrl = "https://twitter.com/seoulbike";
+    }
+	switch(window.osType){
+	    case "web" :
+	    	window.open(tUrl,"_blank");
+	        break;
+	    case "android" :
+	        var pData = {targetUrl  :tUrl, returnFnc : "", title : "서울자전거sns" };
+	        window.android.openWebviewPopup(JSON.stringify(pData));
+	        break;
+	    case "ios" : 
+	        var iosUrl = 'toApp://?{"targetUrl" : "'+tUrl+'","title" : "서울자전거sns", "returnFnc" : "", "call":"openWebviewPopup"}';
+	        window.location = iosUrl;
+	        break;
+    }
+}
+		
+</script>
+<!--footer-->
+<script type="text/javascript" src="/js/common_spb.js"></script>
+
+<script src="/js/classie.js"></script>
+<script>
+	checkAPI();
+	var appOsType = 'android';
+	var cookie = Number(getCookie("step"));
+	if( cookie == "" || cookie == null || typeof cookie == "undefined"){
+		var step = 0;
+		setCookie("step", step);
+	}else{
+		var step = cookie;
+	}
+	stepOption(step);
+	
+	$(".tel").on("click", function(){
+		window.osType = 'android';
+		switch(window.osType){
+			case "android":
+				window.android.callPhone("15990120");
+				break;
+			case "ios":
+				var iosUrl = 'toApp://?{"call":"callPhone", "param":"15990120"}';
+				window.location = iosUrl;
+				break;
+		}
+	});
+		   
+	// 뒤로가기 버튼 클릭 이벤트
+	$("#backBtn").on("click", function(){
+		$("#main_div").show();
+		$("#backBtn").hide();
+		
+		var step = 0;
+		setCookie("step", step);
+		
+		switch(step){
+			case 1 : $("#ticket_div").hide();
+			break;
+			case 2 : $("#member_div").hide();
+			break;
+			case 3 : $("#pay_div").hide();
+			break;
+			case 4 : $("#use_div").hide();
+			break;
+			case 5 : $("#help_div").hide();
+					 $("#help_info").show();
+			break;
+			default : $("#member_div").hide();
+					  $("#pay_div").hide();
+					  $("#use_div").hide();
+					  $("#help_div").hide();
+					  $("#ticket_div").hide();
+					  $("#help_info").show();
+			break;
+		}
+	});
+	
+	// 이용권구매 클릭시 이벤트
+	$("#ticket_info").on("click",function(){
+		$("#main_div").hide();
+		$("#ticket_div").show();
+		$("#backBtn").show();
+		
+		step = 1;
+		setCookie("step", step);
+	});
+	
+	// 회원 정보 관리 클릭시 이벤트
+	$("#member_info").on("click", function(){
+		$("#main_div").hide();
+		$("#member_div").show();
+		$("#backBtn").show();
+		
+		step = 2;
+		setCookie("step", step);
+	});
+	
+	// 결제 관리 클릭 이벤트
+	$("#pay_info").on("click", function(){
+		$("#main_div").hide();
+		$("#pay_div").show();
+		$("#backBtn").show();
+		
+		step = 3;
+		setCookie("step", step);
+	});
+	
+	// 이용정보 관리 클릭 이벤트
+	$("#use_info").on("click", function(){
+		$("#main_div").hide();
+		$("#use_div").show();
+		$("#backBtn").show();
+		
+		step = 4;
+		setCookie("step", step);
+	});
+	
+	$("#help_info").on("click", function(){
+		$("#help_div").show();
+		$("#main_div").hide();
+		$("#ticket_div").hide();
+		$("#member_div").hide();
+		$("#pay_div").hide();
+		$("#use_div").hide();
+		$("#help_info").hide();
+		$("#backBtn").show();
+		
+		step = 5;
+		setCookie("step", step);
+	});
+	
+	function stepOption(step){
+		$("#main_div").hide();
+		$("#backBtn").show();
+		
+		switch(step){
+			case 1 : $("#ticket_div").show();
+			break;
+			case 2 : $("#member_div").show();
+			break;
+			case 3 : $("#pay_div").show();
+			break;
+			case 4 : $("#use_div").show();
+			break;
+			case 5 : $("#help_div").show();
+					 $("#help_info").hide();
+			break;
+			default : $("#member_div").hide();
+					  $("#pay_div").hide();
+					  $("#use_div").hide();
+					  $("#help_div").hide();
+					  $("#ticket_div").hide();
+					  $("#main_div").show();
+					  $("#help_info").show();
+					  $("#backBtn").hide();
+					  break;
+		}
+	};
+	
+	function goCateList(gubun){
+		$("#cateCD").val(gubun);
+		$("#frm").attr({action : "/customer/opinionBoard/opinionBoardCate.do", method : 'post'}).submit();
+	}
+	
+</script>
+</body>
+</html>

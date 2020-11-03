@@ -1,0 +1,18 @@
+{
+  "app": "com.dki.spb_android",
+  "duration": "181ms",
+  "headers": {
+    "Host": "www.bikeseoul.com:9093",
+    "User-Agent": "curl/7.60.0",
+    "Accept": "*/*",
+    "Content-Length": "88",
+    "Content-Type": "application/x-www-form-urlencoded"
+  },
+  "method": "POST",
+  "protocol": "HTTP/1.1",
+  "remoteIp": "14.49.46.12",
+  "remotePort": 9093,
+  "sessionId": "75b82aaf-3edb-4a98-b0ce-b6af667fb8ce",
+  "time": "2020-10-30 19:38:17",
+  "url": "http://www.bikeseoul.com:9093/appiron-inspect/authCheck.call"
+}

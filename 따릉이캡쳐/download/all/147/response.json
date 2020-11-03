@@ -1,0 +1,20 @@
+{
+  "app": "com.dki.spb_android",
+  "code": 200,
+  "duration": "181ms",
+  "headers": {
+    "Date": "Fri, 30 Oct 2020 10:38:16 GMT",
+    "Server": "Apache",
+    "Set-Cookie": "JSESSIONID\u003d55263A9326D40AA1A18C380A0F03778B.appiron2; Path\u003d/appiron-inspect/; HttpOnly",
+    "Content-Language": "en-US",
+    "Content-Length": "1060",
+    "Vary": "Accept-Encoding",
+    "Content-Type": "text/html;charset\u003dUTF-8"
+  },
+  "message": "OK",
+  "protocol": "HTTP/1.1",
+  "remoteIp": "14.49.46.12",
+  "remotePort": 9093,
+  "sessionId": "75b82aaf-3edb-4a98-b0ce-b6af667fb8ce",
+  "time": "2020-10-30 19:38:17"
+}

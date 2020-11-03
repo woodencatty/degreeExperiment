@@ -1,0 +1,19 @@
+{
+  "app": "com.dki.spb_android",
+  "duration": "2320ms",
+  "headers": {
+    "content-type": "application/x-www-form-urlencoded",
+    "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 6.0.1; SM-G900S Build/MMB29M)",
+    "Host": "www.bikeseoul.com:456",
+    "Connection": "Keep-Alive",
+    "Accept-Encoding": "gzip",
+    "Content-Length": "33"
+  },
+  "method": "POST",
+  "protocol": "HTTP/1.1",
+  "remoteIp": "14.49.46.12",
+  "remotePort": 456,
+  "sessionId": "f6bf7fdc-b457-46f0-a88e-f260a5769144",
+  "time": "2020-10-30 19:38:12",
+  "url": "https://www.bikeseoul.com/app/appVersion/appVersionRequest.do"
+}

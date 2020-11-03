@@ -1,0 +1,28 @@
+{
+  "app": "com.dki.spb_android",
+  "duration": "912ms",
+  "headers": {
+    "Host": "www.bikeseoul.com:456",
+    "Connection": "keep-alive",
+    "Pragma": "no-cache",
+    "Cache-Control": "no-cache",
+    "Upgrade-Insecure-Requests": "1",
+    "User-Agent": "Mozilla/5.0 (Linux; Android 6.0.1; SM-G900S Build/MMB29M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.114 Mobile Safari/537.36eSeoulApp",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q\u003d0.9,image/webp,image/apng,*/*;q\u003d0.8,application/signed-exchange;v\u003db3;q\u003d0.9",
+    "X-Requested-With": "com.dki.spb_android",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-User": "?1",
+    "Sec-Fetch-Dest": "document",
+    "Accept-Encoding": "gzip, deflate",
+    "Accept-Language": "ko-KR,ko;q\u003d0.9,en-US;q\u003d0.8,en;q\u003d0.7",
+    "Cookie": "WL_PCID\u003d1234; WMONID\u003dzUmSVyisUJJ; wcCookie\u003d127.0.0.1_T_77981_WC; rentType\u003dRCC_001; unLockType\u003drent; couponTime\u003d60; org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE\u003dko; JSESSIONID\u003d99680EE75D043A36637DF010712B3958.spbSvcApp6UserQRApp; returnTime\u003d2020-10-30%2019%3A35; step\u003d0; returnFlag\u003dN; locLat\u003d37.5133777; locLog\u003d127.1005401"
+  },
+  "method": "GET",
+  "protocol": "HTTP/1.1",
+  "remoteIp": "14.49.46.12",
+  "remotePort": 456,
+  "sessionId": "e2ad8fee-3eef-46e4-b4ed-43f0d21d2cce",
+  "time": "2020-10-30 19:39:54",
+  "url": "https://www.bikeseoul.com/main.do?appOsType\u003dandroid"
+}

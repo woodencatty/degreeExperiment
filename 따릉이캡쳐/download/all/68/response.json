@@ -1,0 +1,20 @@
+{
+  "app": "com.dki.spb_android",
+  "code": 404,
+  "duration": "73ms",
+  "headers": {
+    "Date": "Fri, 30 Oct 2020 10:38:27 GMT",
+    "Server": "Apache",
+    "Content-Language": "ko",
+    "Content-Length": "8160",
+    "Keep-Alive": "timeout\u003d5, max\u003d85",
+    "Connection": "Keep-Alive",
+    "Content-Type": "text/html;charset\u003dutf-8"
+  },
+  "message": "Not Found",
+  "protocol": "HTTP/1.1",
+  "remoteIp": "14.49.46.12",
+  "remotePort": 456,
+  "sessionId": "5dc503ba-e0b7-49ea-a492-4a9708c9c347",
+  "time": "2020-10-30 19:38:28"
+}

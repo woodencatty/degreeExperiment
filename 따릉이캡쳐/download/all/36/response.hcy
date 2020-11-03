@@ -1,0 +1,9 @@
+HTTP/1.1 302 Found
+Date: Fri, 30 Oct 2020 10:39:01 GMT
+Server: Apache
+Location: /main.do?sessionId=99680EE75D043A36637DF010712B3958.spbSvcApp6UserQRApp&loginYn=Y&memberYn=Y&requestURI=%2Fapp%2Frent%2FRCC_001%2FexeQrRentSuccess.do&rentBikeCnt=1
+Content-Language: ko
+Content-Length: 0
+Keep-Alive: timeout=5, max=100
+Connection: Keep-Alive
+

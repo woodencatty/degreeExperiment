@@ -1,0 +1,20 @@
+{
+  "app": "com.dki.spb_android",
+  "code": 302,
+  "duration": "434ms",
+  "headers": {
+    "Date": "Fri, 30 Oct 2020 10:39:01 GMT",
+    "Server": "Apache",
+    "Location": "/main.do?sessionId\u003d99680EE75D043A36637DF010712B3958.spbSvcApp6UserQRApp\u0026loginYn\u003dY\u0026memberYn\u003dY\u0026requestURI\u003d%2Fapp%2Frent%2FRCC_001%2FexeQrRentSuccess.do\u0026rentBikeCnt\u003d1",
+    "Content-Language": "ko",
+    "Content-Length": "0",
+    "Keep-Alive": "timeout\u003d5, max\u003d100",
+    "Connection": "Keep-Alive"
+  },
+  "message": "Found",
+  "protocol": "HTTP/1.1",
+  "remoteIp": "14.49.46.12",
+  "remotePort": 456,
+  "sessionId": "060041db-5328-4fad-8ea7-766716e091be",
+  "time": "2020-10-30 19:39:02"
+}

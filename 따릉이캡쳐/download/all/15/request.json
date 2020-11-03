@@ -1,0 +1,30 @@
+{
+  "app": "com.dki.spb_android",
+  "duration": "226ms",
+  "headers": {
+    "Host": "www.bikeseoul.com:456",
+    "Connection": "keep-alive",
+    "Content-Length": "24",
+    "Pragma": "no-cache",
+    "Cache-Control": "no-cache",
+    "Accept": "application/json, text/javascript, */*; q\u003d0.01",
+    "X-Requested-With": "XMLHttpRequest",
+    "User-Agent": "Mozilla/5.0 (Linux; Android 6.0.1; SM-G900S Build/MMB29M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.114 Mobile Safari/537.36eSeoulApp",
+    "Content-Type": "application/x-www-form-urlencoded; charset\u003dUTF-8",
+    "Origin": "https://www.bikeseoul.com:456",
+    "Sec-Fetch-Site": "same-origin",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Dest": "empty",
+    "Referer": "https://www.bikeseoul.com:456/main.do?sessionId\u003d99680EE75D043A36637DF010712B3958.spbSvcApp6UserQRApp\u0026loginYn\u003dY\u0026memberYn\u003dY\u0026requestURI\u003d%2Fapp%2Frent%2FRCC_001%2FexeQrRentSuccess.do\u0026rentBikeCnt\u003d1\u0026appOsType\u003dandroid",
+    "Accept-Encoding": "gzip, deflate",
+    "Accept-Language": "ko-KR,ko;q\u003d0.9,en-US;q\u003d0.8,en;q\u003d0.7",
+    "Cookie": "WL_PCID\u003d1234; WMONID\u003dzUmSVyisUJJ; wcCookie\u003d127.0.0.1_T_77981_WC; rentType\u003dRCC_001; unLockType\u003drent; couponTime\u003d60; org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE\u003dko; JSESSIONID\u003d99680EE75D043A36637DF010712B3958.spbSvcApp6UserQRApp; returnTime\u003d2020-10-30%2019%3A35; step\u003d0; returnFlag\u003dN; locLat\u003d37.5133777; locLog\u003d127.1005401"
+  },
+  "method": "POST",
+  "protocol": "HTTP/1.1",
+  "remoteIp": "14.49.46.12",
+  "remotePort": 456,
+  "sessionId": "6e34029b-11cc-4192-bfd6-acc9c740239d",
+  "time": "2020-10-30 19:39:04",
+  "url": "https://www.bikeseoul.com/app/station/getStationRealtimeStatus.do"
+}

@@ -1,0 +1,9 @@
+POST /info/bleLog.do HTTP/1.1
+content-type: application/x-www-form-urlencoded
+User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0.1; SM-G900S Build/MMB29M)
+Host: www.bikeseoul.com:456
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Content-Length: 168
+
+timeStamp=2020-10-30 19:38:48.961&deviceName=SPB-00030521&bleData=02%3A+11%3A+00%3A+0a%3A+00%3A+03%3A+01%3A+00%3A+00%3A+58%3A+14%3A+07%3A+01%3A+02%3A+00%3A+03%3A+af%3A+

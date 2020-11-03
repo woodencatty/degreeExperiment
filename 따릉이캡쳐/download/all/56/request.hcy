@@ -1,0 +1,16 @@
+GET /img/side_return.png HTTP/1.1
+Host: www.bikeseoul.com:456
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+User-Agent: Mozilla/5.0 (Linux; Android 6.0.1; SM-G900S Build/MMB29M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.114 Mobile Safari/537.36eSeoulApp
+Accept: image/webp,image/apng,image/*,*/*;q=0.8
+X-Requested-With: com.dki.spb_android
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: image
+Referer: https://www.bikeseoul.com:456/css/style_kr_v2.css?ver=0903
+Accept-Encoding: gzip, deflate
+Accept-Language: ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7
+Cookie: WL_PCID=1234; WMONID=zUmSVyisUJJ; wcCookie=127.0.0.1_T_77981_WC; rentType=RCC_001; unLockType=rent; couponTime=60; org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=ko; JSESSIONID=99680EE75D043A36637DF010712B3958.spbSvcApp6UserQRApp; returnTime=2020-10-30%2019%3A35; locLat=37.51284842; locLog=127.10131829; step=0; returnFlag=Y
+

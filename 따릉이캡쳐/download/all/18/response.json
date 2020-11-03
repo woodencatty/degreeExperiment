@@ -1,0 +1,20 @@
+{
+  "app": "com.dki.spb_android",
+  "code": 200,
+  "duration": "173ms",
+  "headers": {
+    "Access-Control-Allow-Origin": "https://www.bikeseoul.com:456",
+    "Vary": "Origin",
+    "Access-Control-Allow-Credentials": "true",
+    "Cache-Control": "no-cache",
+    "Content-Type": "application/xml;charset\u003dutf-8",
+    "Content-Length": "1012",
+    "Date": "Fri, 30 Oct 2020 10:39:04 GMT"
+  },
+  "message": "",
+  "protocol": "HTTP/1.1",
+  "remoteIp": "210.179.122.76",
+  "remotePort": 8180,
+  "sessionId": "49bd465e-f4d3-4946-ab09-fbfa77c6d3d8",
+  "time": "2020-10-30 19:39:04"
+}

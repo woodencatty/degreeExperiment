@@ -1,0 +1,8 @@
+POST /appiron-inspect/authCheck.call HTTP/1.1
+Host: www.bikeseoul.com:9093
+User-Agent: curl/7.60.0
+Accept: */*
+Content-Length: 88
+Content-Type: application/x-www-form-urlencoded
+
+aiq=01%7C%7CAQIAADACABRjq0Ztkpj3sgtLwoxW%2BQKW0lkl6wEBIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%3D

@@ -1,0 +1,9 @@
+POST /appiron-inspect/authCheck.call HTTP/1.1
+Host: www.bikeseoul.com:9093
+User-Agent: curl/7.60.0
+Accept: */*
+Cookie: WMONID=VwclK0vN5ST; JSESSIONID=55263A9326D40AA1A18C380A0F03778B.appiron2;
+Content-Length: 296
+Content-Type: application/x-www-form-urlencoded
+
+aiq=01%7C7A67D7647DC9BCCD6A17%7CAQIAALACABShqXltXIXI9%2Bga9EHJfUNACp7p%2BwEBIQC4LrdpUsDh2QxPMX6bZ5ZV7%2BJ8AIBkv2sjRDeMbpH245w%2BjDpEjs4L92ye3AmuPyLwT3s0HxKSdK18DJmzQ0AztQ0cc1fQitbp4vunT9Ma5os3PAMaGoUbwPxRSkDjzWUleftTlA%2BVvt2djPaZHzg6SHTdueRIAhtgkbukjXpb1hxHuDrJiHC7cdkqfa%2FJCbre4aL%2B%2Fw%3D%3D

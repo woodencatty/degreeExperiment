@@ -1,0 +1,21 @@
+POST /app/rent/RCC_001/exeQrRentSuccess.do HTTP/1.1
+Host: www.bikeseoul.com:456
+Connection: keep-alive
+Content-Length: 173
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade-Insecure-Requests: 1
+Origin: https://www.bikeseoul.com:456
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Linux; Android 6.0.1; SM-G900S Build/MMB29M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.114 Mobile Safari/537.36eSeoulApp
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+X-Requested-With: com.dki.spb_android
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Dest: document
+Referer: https://www.bikeseoul.com:456/main.do?appOsType=android
+Accept-Encoding: gzip, deflate
+Accept-Language: ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7
+Cookie: WL_PCID=1234; WMONID=zUmSVyisUJJ; wcCookie=127.0.0.1_T_77981_WC; rentType=RCC_001; unLockType=rent; couponTime=60; org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=ko; JSESSIONID=99680EE75D043A36637DF010712B3958.spbSvcApp6UserQRApp; returnTime=2020-10-30%2019%3A35; step=0; returnFlag=N; locLat=37.5133777; locLog=127.1005401
+
+voucherSeq=1623974&rentType=RCC_001&deviceId=19B00B00007739&bikeId=19B00B00007739&stationId=ST-891&rackId=45800121000000&deviceName=SPB-00030521&useTime=&beaconId=&lat=&log=

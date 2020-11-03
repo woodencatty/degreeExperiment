@@ -1,0 +1,19 @@
+{
+  "app": "com.dki.spb_android",
+  "duration": "143ms",
+  "headers": {
+    "content-type": "application/x-www-form-urlencoded",
+    "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 6.0.1; SM-G900S Build/MMB29M)",
+    "Host": "www.bikeseoul.com:456",
+    "Connection": "Keep-Alive",
+    "Accept-Encoding": "gzip",
+    "Content-Length": "156"
+  },
+  "method": "POST",
+  "protocol": "HTTP/1.1",
+  "remoteIp": "14.49.46.12",
+  "remotePort": 456,
+  "sessionId": "aa7199d9-2218-4ec2-a654-a4536e898579",
+  "time": "2020-10-30 19:38:49",
+  "url": "https://www.bikeseoul.com/info/bleLog.do"
+}

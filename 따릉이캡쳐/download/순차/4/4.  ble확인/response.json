@@ -1,0 +1,26 @@
+{
+  "app": "com.dki.spb_android",
+  "code": 200,
+  "duration": "175ms",
+  "headers": {
+    "Date": "Fri, 30 Oct 2020 10:38:47 GMT",
+    "Server": "Apache",
+    "Set-Cookie": "JSESSIONID\u003d679AF701EFF351D4CF3992493E0EFC3E.spbSvcApp3UserQRApp; Path\u003d/; Secure; HttpOnly",
+    "Pragma": "no-cache",
+    "Cache-Control": "no-cache, no-store, max-age\u003d0",
+    "Expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+    "Content-Language": "ko",
+    "Vary": "Accept-Encoding",
+    "Content-Encoding": "gzip",
+    "Keep-Alive": "timeout\u003d5, max\u003d95",
+    "Connection": "Keep-Alive",
+    "Transfer-Encoding": "chunked",
+    "Content-Type": "application/json;charset\u003dUTF-8"
+  },
+  "message": "OK",
+  "protocol": "HTTP/1.1",
+  "remoteIp": "14.49.46.12",
+  "remotePort": 456,
+  "sessionId": "2b2d74d0-c882-43a2-96b0-0eeeb90e5dee",
+  "time": "2020-10-30 19:38:49"
+}

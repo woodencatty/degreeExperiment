@@ -1,0 +1,29 @@
+{
+  "app": "com.dki.spb_android",
+  "duration": "182ms",
+  "headers": {
+    "Host": "tracer.bikeseoul.com:8180",
+    "Connection": "keep-alive",
+    "Content-Length": "65",
+    "Pragma": "no-cache",
+    "Cache-Control": "no-cache",
+    "Accept": "*/*",
+    "User-Agent": "Mozilla/5.0 (Linux; Android 6.0.1; SM-G900S Build/MMB29M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.114 Mobile Safari/537.36eSeoulApp",
+    "Content-Type": "application/x-www-form-urlencoded; charset\u003dUTF-8",
+    "Origin": "https://www.bikeseoul.com:456",
+    "X-Requested-With": "com.dki.spb_android",
+    "Sec-Fetch-Site": "same-site",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Dest": "empty",
+    "Referer": "https://www.bikeseoul.com:456/",
+    "Accept-Encoding": "gzip, deflate",
+    "Accept-Language": "ko-KR,ko;q\u003d0.9,en-US;q\u003d0.8,en;q\u003d0.7"
+  },
+  "method": "POST",
+  "protocol": "HTTP/1.1",
+  "remoteIp": "210.179.122.76",
+  "remotePort": 8180,
+  "sessionId": "e6604464-0841-4484-8285-1926f8bd87cb",
+  "time": "2020-10-30 19:38:27",
+  "url": "https://tracer.bikeseoul.com/TRACERAPI/checkBotIp.do"
+}

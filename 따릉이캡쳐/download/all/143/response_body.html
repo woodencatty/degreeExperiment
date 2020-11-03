@@ -1,0 +1,2211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, target-densityDpi=medium-dpi, user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>서울자전거 따릉이 - 무인대여시스템</title>
+<link href="/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.12.4.js"></script> 
+<script type="text/javascript" src="/js/jquery-ui.js"></script>
+<script type="text/javascript" src="/js/easing/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="/js/gibberish-aes.js"></script>
+<script type="text/javascript" src="/js/jquery.simpler-sidebar.min.js"></script>
+<script type="text/javascript" src="/js/jquery-confirm.js"></script>
+<script type="text/javascript" src="/js/comm.js"></script>
+<script type="text/javascript" src="/js/common_spb.js"></script>
+
+<link rel="stylesheet" href="/css/style_kr_v2.css?ver=0903" type="text/css">
+<link rel="stylesheet" href="/css/common.css" type="text/css">
+<link rel="stylesheet" href="/css/jquery-confirm.css">
+<!--[if lt IE 9]>
+<link href="/css/pw.css" title="ie8chn" rel="stylesheet" type="text/css" />
+<script src="/js/html5.js"></script>
+<script src="/js/respond.min.js"></script>
+<![endif]-->
+<script src="/js/select/jquery.styled-select-box_main.js"></script>
+<script src="/js/lazysizes.min.js" async></script>
+<script type="text/javascript" src="/js/tracerapi.js"></script>
+<script type="text/javascript">
+	function showRealPage() {
+	    $("#waitPage").css("display","none");
+	}
+	
+	function showWaitPage(type) {
+	    $("#waitPage").css("display","block");
+	
+	    $("#isWaitPage").css("display","none");
+	    $("#isRejectPage").css("display","none");
+		 $("isNotUse").css("display","none");
+	
+	
+	    if ( type == 'W' ) {
+	        $("#isWaitPage").css("display","block");
+	    } else if ( type == 'NE' ) {
+	        $("#isNotUse").css("display","block");
+	    } else if ( type == 'R' ) {
+	        $("#isRejectPage").css("display","block");
+	    }
+	}
+	
+	function checkAPI2() {
+	    var host="app.bikeseoul.com";
+	    var loginId= "127.0.0.1";
+	    var port="80";
+	    var pageUrl="main.do";
+	    var ip = "127.0.0.1";
+	
+	    callTracerApiInput(host, ip, loginId, port, pageUrl, this);
+	}
+	
+	
+	function checkAPI() {
+	var host="app.bikeseoul.com";
+	    var loginId= "127.0.0.1";
+	    var port="80";
+	    var pageUrl="main.do";
+	    var ip = "127.0.0.1";
+	
+	    callTracerApiInput(host, ip, loginId, port, pageUrl, this);
+	}
+	
+	function callBackTracer() {
+		//alert("나는이용자");
+	}
+</script>
+</head>
+<body class="mainWrap">
+<div id="waitPage" style="z-index: 999999; display:none">
+	<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+<style>
+
+	body{font-family:"Open Sans", sans-serif;background-size:cover;}
+		#waitBackground{position:absolute;background-color:rgba(0,0,0,0.4);width:100%;height:100%;z-index:20000;top:0;}
+		@media (max-width :420px) {
+			body{
+				background-position:50%;
+				
+			}
+			.login-containerT{width:100%!important;
+			
+			}
+			.mobile-size {
+				width:90%!important;
+				margin: 0 auto;
+				
+			}
+			.text-center h3 {
+				margin-top: 52px!important;
+				font-size: 20px!important;
+			}
+			.hpanel {
+				margin-top: 20px!important;
+				padding: 16px 0 16px 0!important;	
+
+			}
+			.sub_text {
+				font-size:0.8em!important;			
+			}
+			#loading3 {
+				width:70%!important;
+			}
+			.main_logo {
+				right:50%!important;
+				transform: translate(50%)!important;	
+			}
+			.main_logo img {
+				width: 110px!important;
+				height: auto!important;
+			}
+			
+
+
+
+		}
+		.login-containerT{max-width:none;width:560px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:20001;}
+
+		.login-containerT, .row, .col-md-12, .hpanel{margin:0;padding:0;}
+		.panel-bodyT{text-align:center;padding:0px 2it_default.jsp0px 10px!important;border-radius:0;}
+		
+		#boxHeadLine{background:#4486d4;width:100%;height:4px;}
+		#wait_value{
+			color:#1e1e1e;
+			font-weight:bold;
+			font-size:1.2em;
+			margin: 0 0 20px 0;
+			
+		}
+		
+		#loading3{display:flex;width:50%;justify-content:space-between;margin:30px auto 49px;}
+	    #loading3>div{width:8px;height:40px;margin-right:7px;background-color:#033074;border-radius: 3px;
+	        -webkit-animation:strechdelay 1.5s ease-in-out infinite;
+	        animation:strechdelay 1.5s ease-in-out infinite;
+	    }
+	    #loading3 .line2{
+	        -webkit-animation-delay:-1.4s;
+	        animation-delay:-1.4s;
+	    } #loading3 .line3{
+	        -webkit-animation-delay:-1.3s;
+	        animation-delay:-1.3s;
+	    }#loading3 .line4{
+	        -webkit-animation-delay:-1.2s;
+	        animation-delay:-1.2s;
+	    }#loading3 .line5{
+	        -webkit-animation-delay:-1.1s;
+	        animation-delay:-1.1s;
+	    }#loading3 .line6{
+	        -webkit-animation-delay:-1.0s;
+	        animation-delay:-1.0s;
+	    }#loading3 .line7{
+	        -webkit-animation-delay:-0.9s;
+	        animation-delay:-0.9s;
+	    }#loading3 .line8{
+	        -webkit-animation-delay:-0.8s;
+	        animation-delay:-0.8s;
+	    }#loading3 .line9{
+	        -webkit-animation-delay:-0.7s;
+	        animation-delay:-0.7s;
+	    }#loading3 .line10{
+	        -webkit-animation-delay:-0.6s;
+	        animation-delay:-0.6s;
+	    }#loading3 .line11{
+	        -webkit-animation-delay:-0.5s;
+	        animation-delay:-0.5s;
+	    }#loading3 .line12{
+	        -webkit-animation-delay:-0.4s;
+	        animation-delay:-0.4s;
+	    }#loading3 .line13{
+	        -webkit-animation-delay:-0.3s;
+	        animation-delay:-0.3s;
+	    }#loading3 .line14{
+	        -webkit-animation-delay:-0.2s;
+	        animation-delay:-0.2s;
+	    }#loading3 .line15{
+	        -webkit-animation-delay:-0.1s;
+	        animation-delay:-0.1s;
+	    }#loading3 .line16{
+	        -webkit-animation-delay:-0.0s;
+	        animation-delay:-0.0s;
+	    }
+	    
+	    @keyframes strechdelay{
+	        0%,50%,100%{
+	            transform:scaleY(.7);
+	        }
+	        20%{
+	            transform:scaleY(1);
+	            background-color:#2d69c2;
+	        }
+	    }
+	
+	    @-webkit-keyframes strechdelay{
+	        0%,50%,100%{
+	            -webkit-transform:scaleY(.7);
+	        }
+	        20%{
+	            -webkit-transform:scaleY(1);
+	            background-color:#72a5f5;
+	        }
+	    }
+	</style>
+
+<script type="text/javascript">
+
+function checkCntData() {
+    var host = this_host;
+    var ip =  this_ip;
+    var loginId = this_loginId;
+    var port = this_port;
+    var pageUrl = this_pageUrl;
+    var sendThis = this_sendThis
+
+    callTracerApiInputData(host, ip, loginId, port, pageUrl, sendThis);
+
+    var waitCnt = this_waitCnt;
+	
+    if ( waitCnt == "0" || waitCnt == "E") {
+      showRealPage();
+      callBackTracer();
+    } else {
+         var $el = $("#wait_value");
+         var waitCnt = this_waitCnt;
+	 if ( $.isNumeric(waitCnt) ) {
+	     $el.html("고객님의 대기열은 <span style=\"font-size:22px;color:red;font-weight:bold;\">"+comma(Math.floor(waitCnt))+"</span> 명입니다.");
+	} else {
+	  // alert("AAA"+opener.this_waitCnt+"AAA");
+
+	}
+    }
+
+}
+
+playAlert = setInterval(function() {
+    if ( this_isWait == "T" ) {
+	 checkCntData();
+    } 
+}, 1000);
+
+$(document).ready(function() {
+    var $el = $("#wait_value");
+    $el.html("고객님의 대기열을 확인중입니다.");
+    //checkCntData();
+});
+
+
+function createCookie() {
+	var now = new Date();
+	  var time = now.getTime();
+	  var expireTime = time + 1000*36000;
+	  now.setTime(expireTime);
+	  var tempExp = 'Wed, 31 Oct 2020 08:50:17 GMT';
+	  document.cookie = 'SESSIONID=hjpark123;expires='+now.toGMTString()+';path=/';
+	  //console.log(document.cookie);
+}
+
+
+/* setInterval(function() {
+	window.location.href='login.do';
+		}, 20000); */
+
+function comma(num){
+    var len, point, str; 
+       
+    num = num + ""; 
+    point = num.length % 3 ;
+    len = num.length; 
+   
+    str = num.substring(0, point); 
+    while (point < len) { 
+        if (str != "") str += ","; 
+        str += num.substring(point, point + 3); 
+        point += 3; 
+    } 
+     
+    return str;
+}
+</script>
+
+</head>
+<body class="blank">
+
+<form id="listForm" method="POST" class="mt-repeater form-horizontal" action="">
+</form>
+<div class="login-containerT" style="">
+    <div class="row" id="isWaitPage" style="display:none">
+	<div class="mobile-size" style="border: 4px solid #033074;width:100%;height:auto;overflow:hidden;">
+        <div class="col-md-12" style="width:100%;height:auto;background:#fff;border: 8px solid #d0dcea;">
+		<div class="main_logo"style="position:absolute;right:2%;top:12px;"> <img src="/images/logo2.png" style="width:90px;height:auto;margin-top: 10px;"> </div>
+        	<div class="text-center" style="padding-top:20px;"></div>
+            <div class="text-center m-b-md">
+                <h3 style="font-weight:bold;font-size:22px;color:#033074;margin-top:5px;letter-spacing: -0.04em;text-align: center;">서비스 접속 대기 중입니다. </h3>
+            </div>
+		<div id="loading3" style="margin-bottom:30px;">
+                                                <div class="line1"></div><div class="line2"></div><div class="line3"></div><div class="line4"></div>
+                                                <div class="line5"></div><div class="line6"></div><div class="line7"></div><div class="line8"></div>
+                                                <div class="line9"></div><div class="line10"></div><div class="line11"></div><div class="line12"></div>
+                                                <div class="line13"></div><div class="line14"></div><div class="line15"></div><div class="line16"></div>
+                                        </div>
+
+            <div class="hpanel" style="width:88%;margin: 0 auto;background:#d0dcea;padding: 14px 0 14px 0;margin-top:20px;">
+                <div class="panel-bodyT" style="border:none;">
+			<div id="wait_value"></div>
+                    
+                   <div class="sub_text"style="letter-spacing: -0.04em;font-weight:600;font-size:0.8em;color:#1e1e1e;padding: 0 20px 0 20px;">현재 접속 사용자가 많아 대기중이며, 잠시만 기다리시면 자동 접속됩니다.</div>
+		
+                </div>
+            </div>
+		<div style="text-align:right;padding:10px 10px 6px;font-size:10px;opacity:0.8;">TRACER - Copyright 2018-2020 WELLCONN Corp.</div>
+        </div>
+	</div>
+    </div>
+
+
+	<div class="row" id="isRejectPage" style="display:none">
+	<div class="mobile-size" style="border: 4px solid #033074;width:100%;height:auto;overflow:hidden;">
+        <div class="col-md-12" style="width:100%;background:#fff;border: 8px solid #d0dcea;">
+		<div class="main_logo" style="position:absolute;right:2%;top:12px;"> <img src="/images/logo2.png" style="width:90px;height:auto;margin-top: 10px;"> </div>
+        	<div class="text-center" style="padding-top:20px;"></div>
+            <div class="text-center m-b-md">
+                <h3 style="font-weight:bold;font-size:22px;color:#033074;margin-top:5px;letter-spacing: -0.04em;text-align: center;">서비스 접속이 차단 되었습니다. </h3>
+            </div>
+            <div class="hpanel" style="width:88%;margin: 0 auto;background:#d0dcea;padding: 16px 0 16px 0;margin-top:0px;">
+                <div class="panel-bodyT" style="border:none;">
+			<div id="wait_value2"></div>
+                   <div class="sub_text"style="letter-spacing: -0.04em;font-weight:600;font-size:1.0em;color:#1e1e1e;">현재 접속하신 아이피에서는<br> 접속이 불가능합니다.</div>
+                </div>
+            </div>
+		<div style="text-align:right;padding:16px 10px 6px;font-size:10px;opacity:0.8;">TRACER - Copyright 2018-2020  WELLCONN Corp.</div>
+        </div>
+	</div>
+    </div>
+
+	<div class="row" id="isNotUse" style="display:none">
+	<div class="mobile-size" style="border: 4px solid #033074;width:100%;height:auto;overflow:hidden;">
+        <div class="col-md-12" style="width:100%;background:#fff;border: 8px solid #d0dcea;">
+		<div class="main_logo" style="position:absolute;right:2%;top:12px;"> <img src="/images/logo2.png" style="width:90px;height:auto;margin-top: 10px;"> </div>
+        	<div class="text-center" style="padding-top:20px;"></div>
+            <div class="text-center m-b-md">
+                <h3 style="font-weight:bold;font-size:22px;color:#033074;margin-top:5px;letter-spacing: -0.04em;text-align: center;">서비스 접속이 불가합니다. </h3>
+            </div>
+            <div class="hpanel" style="width:88%;margin: 0 auto;background:#d0dcea;padding: 16px 0 16px 0;margin-top:0px;">
+                <div class="panel-bodyT" style="border:none;">
+			<div id="wait_value2"></div>
+                   <div class="sub_text"style="letter-spacing: -0.04em;font-weight:600;font-size:1.0em;color:#1e1e1e;">접속량이 많아 접속이 불가능합니다.<br> 잠시 후 다시 접속해주세요</div>
+                </div>
+            </div>
+		<div style="text-align:right;padding:16px 10px 6px;font-size:10px;opacity:0.8;">TRACER - Copyright 2018-2020  WELLCONN Corp.</div>
+        </div>
+	</div>
+    </div>
+
+
+</div>
+<div id="waitBackground"></div>
+</body>
+</html>
+</div>
+<input type="hidden" id="tabId">
+<div class="wrap">
+	<!--header-->
+	<script type="text/javascript">
+	
+		function moveSnsViewPage(flag){
+			
+			var tUrl = "";
+			if(flag === 'snsFacebook') {
+				tUrl = "https://www.facebook.com/seoulbike";
+		    } else {
+		    	tUrl = "https://twitter.com/seoulbike";
+		    }
+			switch(window.osType){
+			    case "web" :
+			    	window.open(tUrl,"_blank");
+			        break;
+			    case "android" :
+			        var pData = {targetUrl  :tUrl, returnFnc : "", title : "서울자전거sns" };
+			        window.android.openWebviewPopup(JSON.stringify(pData));
+			        break;
+			    case "ios" : 
+			        var iosUrl = 'toApp://?{"targetUrl" : "'+tUrl+'","title" : "서울자전거sns", "returnFnc" : "", "call":"openWebviewPopup"}';
+			        window.location = iosUrl;
+			        break;
+		    }
+		}
+	</script>
+<!--웹 : 헤더추가-->
+    <div class="header_wrap">
+        <div class="header">
+        	<div class="top">
+				<div class="m_sub_header_wrap">
+					<div class="m_sub_header">
+						<button class="back"></button>
+						<button class="close"></button>
+						<span id="title"></span>
+					</div>
+					<!-- //.m_sub_header -->
+				</div>
+				<!-- //.m_sub_header_wrap -->
+			
+        		<div class="m_menu">메뉴열기</div>
+				<div class="m_global">언어선택</div>
+				<div class="info"><a href="/info/infoReg.do">이용안내</a></div>
+				<div class="alim"><a href="/app/mybike/getPushHistory.do">알림</a></div>
+				<a class="join" href="/app/mybike/getMemberUseHistory.do?appOsType=">나의 공간</a>
+						<a class="login" href="/logout.do">
+							로그아웃</a> 
+					<div class="global" id="changeLang">
+					<ul>
+						<li class="en"><a href="https://www.bikeseoul.com:457/main.do?lang=en&appOsType=android">ENGLISH</a></li>
+							    <li class="ch"><a href="https://www.bikeseoul.com:457/main.do?lang=zh&appOsType=android">中國語</a></li>
+							    <li class="ja"><a href="https://www.bikeseoul.com:457/main.do?lang=ja&appOsType=android">日本語</a></li>
+							    <li class="ko"><a href="https://www.bikeseoul.com:456/main.do?lang=ko&appOsType=android">한국어</a></li>
+							</ul>
+				</div>
+				
+				
+			</div>
+			<!-- 모바일 화면 -->
+			<div class="logo"><a href="/main.do"><img src="/images/logo.png" alt="서울자전거 따릉이"></a></div>
+            
+            <!--메뉴(웹)-->
+            <div class="menu_web">
+                <ul>
+                    <li><a href="/main.do#bike_info">사업소개</a></li>
+                    <li><a href="/app/station/moveStationRealtimeStatus.do">대여소 조회</a></li>
+                    <li><a href="/app/ticket/member/buyTicketList.do">이용권 구매</a></li>
+                    <li><a href="/customer/opinionBoard/opinionBoardList.do">문의/FAQ</a></li>
+                    <li><a href="/customer/notice/noticeList.do">공지사항</a></li>
+                    <li><a href="/customer/faq/faqList.do">안전수칙</a></li>
+                </ul>
+            </div>
+            <!--메뉴(웹)--> 
+        </div>
+        <div class="bike_tap">
+		  	<ul>
+				<li class="first"><span id="all">전체</span></li>
+				<li class="second"><span id="lcd">LCD형<br>따릉이</span></li>
+				<li class="third"><span id="qr">QR형<br>뉴따릉이</span></li>
+				</ul>
+		</div>
+		<div class="remarks">
+			<ul>
+				<li class="title">대여소</li>
+				<li class="place01">LCD형,&nbsp;QR형<br>따릉이&nbsp;반납가능</li>
+				<li class="place02">QR형&nbsp;뉴따릉이&nbsp;전용<br><span class="lcd">(LCD형&nbsp;반납불가)</span></li>
+			</ul>
+		</div> 
+		<!-- //remarks -->
+    </div>
+    <!--웹 : 헤더추가--><div class="new_float_icon" id="new_float_icon" style="display:none;">
+		따릉이 안내</div>
+	<!-- //.new_float_icon -->
+	<div class="new_float_icon_mask_2">
+		<div class="new_float_info_wrap_2">
+			<div class="new_float_info_box_2">
+				<div class="new_float_close_2">닫기</div>
+				<h3>반납 방법 안내</h3>
+				<div class="img_box">
+					<iframe src="https://www.youtube.com/embed/G6TPe2a9SxY" frameborder="0" width="100%" height="230"></iframe>
+				</div>
+			</div> 
+			<!-- //.new_float_info_box  -->
+		</div>
+	</div>
+	<div class="new_float_icon_mask">
+		<div class="new_float_info_wrap">
+			<div class="new_float_info_box">
+				<div class="new_float_close">닫기</div>
+				<h3>자전거대여소 이용기준 안내</h3>
+				<p class="place pl01">따릉이(LCD형), 뉴따릉이(QR형)<br>모두 반납가능한 대여소</p> 
+				<p class="place pl02">뉴따릉이(QR형)만<br>반납 가능한 대여소</p> 
+				<div class="img_box">
+					<ul>
+						<a href="/info/infoReg.do?useInfo=bike_tab-1"><li class="float01">따릉이(LCD) 사용안내 바로가기</li></a>
+						<a href="/info/infoReg.do?useInfo=bike_tab-2"><li class="float02">뉴따릉이(QR형) 사용안내 바로가기</li></a>
+						<a href="/info/infoReg.do?useInfo=bike_tab-3"><li class="float03">e-따릉이 사용안내 바로가기</li></a>
+					</ul>
+					<br>
+					<a href="javascript:popTutorial();">
+						<span style="color: white">튜토리얼 보기</span>
+					</a>
+				</div>
+				<!-- .img_box -->
+			</div> 
+			<!-- //.new_float_info_box  -->
+		</div>
+		<!-- //new_float_icon_mask -->
+	</div>
+	<!-- //new_float_icon_mask -->
+	<div class="mask">
+		<div class="maskwrap">
+			<div class="mask_close">닫기</div>
+			<div class="change_lang" id="changeLang">
+				<ul>
+					<!-- 
+					<li><a href="https://www.bikeseoul.com:447/main.do?lang=en">ENGLISH</a></li>
+					<li><a href="https://www.bikeseoul.com:447/main.do?lang=zh">中國語</a></li>
+					<li><a href="https://www.bikeseoul.com:447/main.do?lang=ja">日本語</a></li> 
+					-->
+					<!-- <li class="en"><a href="http://175.125.130.92:8080/main.do?lang=en">ENGLISH</a></li>
+					<li class="ch"><a href="http://175.125.130.92:8181/main.do?lang=zh">中國語</a></li>
+					<li class="ja"><a href="http://175.125.130.92:8181/main.do?lang=ja">日本語</a></li>
+					<li class="ko"><a href="http://175.125.130.92:8080/main.do?lang=ko">한국어</a></li> -->
+					
+					<li class="en"><a href="https://www.bikeseoul.com:457/main.do?lang=en&appOsType=android">ENGLISH</a></li>
+							<li class="ch"><a href="https://www.bikeseoul.com:457/main.do?lang=zh&appOsType=android">中國語</a></li>
+							<li class="ja"><a href="https://www.bikeseoul.com:457/main.do?lang=ja&appOsType=android">日本語</a></li>
+							<li class="ko"><a href="https://www.bikeseoul.com:456/main.do?lang=ko&appOsType=android">한국어</a></li>
+						</ul>
+			</div>
+			<!-- //.change_lang -->
+			<div class="search_content">
+				<form id="frm"></form>
+			
+				<form  class="search" id="search" role="search">
+					<fieldset class="fld_sch">
+						<legend class="screen_out">검색어 입력폼</legend>
+						<div class="box_search">                    
+							<input type="text" id="searchValue" value="" name="searchValue" title="검색어 입력" placeholder="원하시는 지역이 어디신가요?">
+							<div id="search_data"></div>
+						</div>
+					</fieldset>
+					<input type="hidden" name="searchType" id="searchType">
+				</form>
+				<!-- <script>$("select").styledSelect();</script> --> 
+			</div>
+			<!-- //.search_content -->
+		</div>
+		<!-- //.maskwrap -->
+	</div> 
+	<!-- //mask -->
+	
+	<!-- 정류장 정보 start -->
+	<div class="location_info" style="display: none">
+		<div class="location_info_wrap">
+			<!-- 창닫기  -->
+			<div class="mask_close location_close">
+				창닫기                    
+			</div>
+			<!-- //.close -->
+			<p class="location_name">
+				<span id="location_id"></span>
+				<span class="favorite_icon" id="favoriteBtn" style="display: none"><img src="img/favorite.png" alt="">즐겨찾기 등록취소</span>
+				<span class="favorite_icon" id="favoriteBtn_off"><img src="img/favorite_off.png" alt="">즐겨찾기 등록</span>
+				<span class="favorite_icon" id="reLoadBike" style="display: none">자전거 추가배치 요청</span>
+			</p>  
+			<div class="location_box" id="location_01">
+				<div><img src="img/location_01.png" alt="" class="lazyload"></div>
+				<div class="num" id="parkingBikeTotCnt"></div>
+				<div class="name">따릉이&nbsp;( LCD형 )</div>
+				<a class="rent" id="bike_rent">대여하기</a>
+			</div> 
+			<!-- //.location_box  -->
+		
+			<div class="location_box" id="location_02">
+				<div><img src="img/location_02.png" alt="" class="lazyload"></div>
+				<div class="num" id="parkingQRBikeCnt"></div>
+				<div class="name">뉴따릉이&nbsp;( QR형 )</div>
+				<a id="new_rent" class="rent" href="javascript:goQrRent();">대여하기</a>
+			</div> 
+			<!-- //.location_box  -->
+		
+			<div class="location_box" id="location_03">
+				<div><img src="img/location_03.png" alt="" class="lazyload"></div>
+				<div class="num" id="parkingELECBikeCnt"></div>
+				<div class="name">e 따릉이</div>
+				<a id="elec_rent" class="rent" href="javascript:goQrRent();">대여하기</a>
+			</div> 
+			<!-- //.location_box  -->	
+			<div id="noticeLocation" style="height:30px">
+				<font color="red" style="font-weight: bold;"><br>※ LCD형 따릉이는 신규대여소에 반납이 불가합니다.</font>
+			</div>
+		</div>
+		<!-- //.location_info_wrap  -->
+	</div>
+	<!-- //location_info --> 
+<!-- 반납 정보 -->
+		<div class="container" id="rentinfo">
+			<div class="content">
+				<div class="rent" style="margin-top: 60px;">
+					<div class="bike_num" style="margin:0 0 20px 0; line-height:22px; border-bottom:#72ebc8 2px solid">
+						<span style="font-size:14px"> 
+							<strong>반납이 완료되었습니다.</strong><br>서울자전거를 이용해주셔서 감사합니다</strong>
+						</span>
+					</div>
+					<div class="kcal_box">
+						<ul>
+							<li><img src="/images/kcal_txt1.png" alt="이용시간"><p>0</p></li>
+							<li><img src="/images/kcal_txt2.png" alt="거리"><p>0.00</p></li>
+						</ul>
+					</div>
+					<div class="my_box">
+						<table>
+							<colgroup>
+								<col width="20%">
+								<col width="80%">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th class="first">자전거</th>
+									<td class="first"><span>SPB-30521</span></td>
+								</tr>
+								<tr>
+									<th>대여</th>
+									<td><span>2020-10-30 19:35 / 1210. 롯데월드타워(잠실역2번출구 쪽)</span></td>
+								</tr>
+								<tr>
+									<th>반납</th>
+									<td><span>2020-10-30 19:35 / 1210. 롯데월드타워(잠실역2번출구 쪽)</span></td>
+								</tr> 
+								<tr>
+									<th>이용시간</th>
+									<td><span>0분</span></td>
+								</tr>
+								<tr>
+									<th>추가과금</th>
+									<td><span>0</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="login_btns" id="returnBtn">
+						<a href="#">확인</a>
+					</div>
+					<div class="login_btns" id="fixBtn">
+						<a href="#">고장신고 바로가기</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<form id="QRfrm">
+    <input type="hidden" id="voucherSeq"  name="voucherSeq" value=""/>
+    <input type="hidden" id="rentType" name="rentType" value=""/>
+    <input type="hidden" id="deviceId" name="deviceId" value=""/>
+    <input type="hidden" id="bikeId" name="bikeId" value=""/>
+    <input type="hidden" id="stationId" name="stationId" value=""/>
+    <input type="hidden" id="rackId" name="rackId" value=""/>
+    <input type="hidden" id="deviceName" name="deviceName" value=""/>
+    <input type="hidden" id="useTime" name="useTime" value=""/>
+    <input type="hidden" id="beaconId" name="beaconId" value=""/>
+    <input type="hidden" id="lat" name="lat" value=""/>
+    <input type="hidden" id="log" name="log" value=""/>
+    
+</form>
+<!-- <script src="/js/accordion/jquery-2.1.0.min.js"></script> -->
+<script src="/js/accordion/jquery.responsiveTabs.js" type="text/javascript"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            var $tabs = $('#horizontalTab');
+            $tabs.responsiveTabs({
+                rotate: false,
+                startCollapsed: 'accordion',
+                collapsible: 'accordion',
+                setHash: true,
+                disabled: [8,9],
+                click: function(e, tab) {
+                	
+                },
+                activate: function(e, tab) {
+                  
+                },
+    			activateState: function(e, state) {
+    				//console.log(state);
+    			}
+            });
+
+            $('#start-rotation').on('click', function() {
+                $tabs.responsiveTabs('startRotation', 1000);
+            });
+            $('#stop-rotation').on('click', function() {
+                $tabs.responsiveTabs('stopRotation');
+            });
+            $('#start-rotation').on('click', function() {
+                $tabs.responsiveTabs('active');
+            });
+            $('#enable-tab').on('click', function() {
+                $tabs.responsiveTabs('enable', 3);
+            });
+            $('#disable-tab').on('click', function() {
+                $tabs.responsiveTabs('disable', 3);
+            });
+            $('.select-tab').on('click', function() {
+                $tabs.responsiveTabs('activate', $(this).val());
+            });
+
+		     $('ul.tabs li').click(function(){
+    var tab_id = $(this).attr('data-tab');	
+    var tab_idx = tab_id.substring(4);
+
+    $('ul.tabs li').removeClass('current');
+    $('.tab-content').removeClass('current');
+ 
+    $(this).addClass('current');
+    $("#"+tab_id).addClass('current');
+
+    //다른 항목에 있는 current 까지 삭제 한거 복구 
+	if(tab_idx.length == 2) {
+		$("#tab-"+tab_id.substring(1)).addClass('current');
+	} else if(tab_idx.length == 1) {
+		$("#tab-"+tab_idx+tab_idx).addClass('current');
+	}
+
+  })
+
+
+});
+
+</script>
+
+<!--하단바-->
+    <div class="bottom">
+        <dl> 
+            <dd class="my">
+            	<button id="showLeft" class="my" style="display: none"></button>
+            	<a href="/leftPage.do"></a>
+                
+            </dd>
+            <dd class="bookmark"><a href="/app/mybike/favoriteStation.do"></a></dd>
+            <dt class="guide"><a href="/info/infoReg.do"></a></dt>
+            <dd class="qr"><a href="javascript:goQrRent();" id="qr"></a></dd>
+            <dd class="ticket"><a href="/app/ticket/member/buyTicketList.do"></a></dd>
+        </dl>
+        
+    </div>
+    <!--하단바--><!--footer-->
+    <div class="footer_wrap">
+        <div class="footer">
+        	<div class="left">
+            <ul>
+                <!--<li><a href="">개인정보처리방침</a></li>
+                <li class="line"><a href="">이메일주소무단수집거부</a></li>-->
+                <li><a href="/app/use/moveUseMenuClauseInfo.do">이용약관</a></li>
+                <li class="line"><a href="/app/use/moveUseMenuClauseInfo.do?tabInfo=2">개인정보처리방침</a></li>
+                <li class="line"><a href="/app/use/moveUseMenuInsurance.do">보험안내</a></li>
+                <li class="line"><a href="/customer/donor/donorList.do">도움주신 분</a></li>
+                            
+            </ul>
+            <p>서울특별시 중구 세종대로 110 서울특별시 대표자 서정협, Tel : 1599-0120 (사업자등록번호 : 104-83-00469) 우편번호 04524</p>
+            <p>COPYRIGHT ⓒ 2018 bikeseoul All RIGHTS RESERVED.</p>
+            </div>
+            <dl>
+                <dt>sns</dt>
+                <dd class="face" onclick="javascript:moveSnsViewPage('snsFacebook')"><a href="#" id="snsFacebook"> </a></dd>
+                <dd class="twit" onclick="javascript:moveSnsViewPage('snsTweeter')"><a href="#" id="snsTweeter"> </a></dd>
+            </dl>
+        </div>
+    </div>
+<!--footer-->
+
+<script type="text/javascript">
+
+$(function() {
+    $(".back").on("click", goBack);
+});
+
+$(function() {
+    $(".back.left").on("click", goBackLeft);
+});
+
+$(function() {
+    $(".back.right").on("click", goBackRight);
+});
+
+$(function() {
+    $(".pwback").on("click", goBack);
+});
+$(function() {
+    $(".close").on("click", goHome);
+});
+$(function() {
+    $(".logo").on("click", goHome);
+});
+$(function() {
+    $(".alim").on("click", goAlim);
+});
+$(function() {
+    //$("#changeLang").on("click", changeLang);
+});
+function osInfo(pOSobj){
+    var obj = JSON.parse(pOSobj);
+    window.osType = obj.osInfo;
+    
+    //대여소 찿기 PDF 버튼 숨기기.
+    if($("#pdfDiv") !== 'undefined') {
+	    $("#pdfDiv").css("display","none");
+    }
+};
+
+function goBack(e) {
+	//e.preventDefault();
+    //alert("2->"+e.type +":"+ window.osType);
+    window.osType = 'android';
+    //alert(window.osType);
+    switch(window.osType){
+    case "web" :
+    	window.history.go(-1);      
+        break;
+    case "android" :
+        window.android.goBack();
+        break;
+    case "ios" : 
+        window.location = 'toApp://?{"call":"goBack"}';
+        break;
+    case "" :
+    	window.history.go(-1);      
+        break;
+    }
+}
+
+function goBackLeft(e) {
+    //e.preventDefault();
+    //alert("2->"+e.type +":"+ window.osType);
+   /*  switch(window.osType){
+    case "web" :
+        window.location.href='/main.do';     
+        break;
+    case "android" :
+    	window.location.href='/main.do';
+        break;
+    case "ios" : 
+    	window.location.href='/main.do';
+        break;
+    case "" :
+    	window.location.href='/main.do';      
+        break;    
+    } */
+}
+
+function goBackRight(e) {
+    //e.preventDefault();
+    //alert("2->"+e.type +":"+ window.osType);
+    /* switch(window.osType){
+    case "web" :
+        window.location.href='/main.do';     
+        break;
+    case "android" :
+    	window.location.href='/main.do';
+        break;
+    case "ios" : 
+    	window.location.href='/main.do';
+        break;
+    case "" :
+    	window.location.href='/main.do';      
+        break;    
+    } */
+	/* switch(window.osType){
+    case "web" :
+    	window.history.go(-1);      
+        break;
+    case "android" :
+        window.android.goBack();
+        break;
+    case "ios" : 
+        window.location = 'toApp://?{"call":"goBack"}';
+        break;
+    case "" :
+    	window.history.go(-1);      
+        break;
+    } */
+}
+
+function goHome(e) {
+	setCookie("step", 0);
+    //e.preventDefault();
+    //alert("2->"+e.type +":"+ window.osType);
+    switch(window.osType){
+    case "web" :
+        window.location.href='/main.do';     
+        break;
+    case "android" :
+    	window.location.href='/main.do';
+        break;
+    case "ios" : 
+    	window.location.href='/main.do';
+        break;
+    case "" :
+    	window.location.href='/main.do';      
+        break;    
+    }
+}
+
+function goAlim(e) {
+    //e.preventDefault();
+    //alert("2->"+e.type +":"+ window.osType);
+    switch(window.osType){
+    case "web" :
+        window.location.href='/app/mybike/getPushHistory.do';     
+        break;
+    case "android" :
+    	window.location.href='/app/mybike/getPushHistory.do';
+        break;
+    case "ios" : 
+    	window.location.href='/app/mybike/getPushHistory.do';
+        break;
+    case "" :
+        window.location.href='/app/mybike/getPushHistory.do';     
+        break;    
+    }
+}
+
+function changeLang(e) {
+	var lang = 'en'
+
+	switch(window.osType){
+    case "web" :
+        window.location.href='/main.do?lang='+lang;     
+        break;
+    case "android" :
+    	window.location.href='/main.do?lang='+lang;
+        break;
+    case "ios" : 
+    	window.location.href='/main.do?lang='+lang;
+        break;
+    case "" :
+        window.location.href='/main.do?lang='+lang;     
+        break;    
+    }
+}
+
+function moveSnsViewPage(flag){
+			
+	var tUrl = "";
+	if(flag === 'snsFacebook') {
+		tUrl = "https://www.facebook.com/seoulbike";
+    } else {
+    	tUrl = "https://twitter.com/seoulbike";
+    }
+	switch(window.osType){
+	    case "web" :
+	    	window.open(tUrl,"_blank");
+	        break;
+	    case "android" :
+	        var pData = {targetUrl  :tUrl, returnFnc : "", title : "서울자전거sns" };
+	        window.android.openWebviewPopup(JSON.stringify(pData));
+	        break;
+	    case "ios" : 
+	        var iosUrl = 'toApp://?{"targetUrl" : "'+tUrl+'","title" : "서울자전거sns", "returnFnc" : "", "call":"openWebviewPopup"}';
+	        window.location = iosUrl;
+	        break;
+    }
+}
+		
+</script>
+<!-- <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=782hpigcuy&submodules=geocoder"></script> -->																																		  
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4brj1w2qf8&submodules=geocoder"></script>
+<!-- <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=icuxwf317o&submodules=geocoder"></script> -->
+<!-- <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4791tlnwi5&submodules=geocoder"></script>-->
+  
+<script type="text/javascript" src="/js/newStation.js?ver=0330"></script>
+
+<script type="text/javascript">
+	checkAPI();
+	var langClsCd = 'LAG_001';
+	var deviceType = '';
+	var appOsType = 'android';
+	var positionBtnHtml = "<div class='position_re'><a href='#'>&nbsp;&nbsp;</a></div>";
+	
+	// 2019.02.20 <div style='padding:10px'> 변경
+	var locationBtnHtml = " <div style='padding:10px'><img src='/images/location_re.png'></div>";
+	
+	var loginYn = 'Y';
+	var rentClsCd = '';
+	var returnDttm = '2020-10-30 19:35';
+	var isChkRent = 'false';
+	var urlParam = getUrlParams();
+	var doubleSubmitFlag = false;
+	var autocompleteStationName = new Array();
+	var rentBikeNo = 'SPB-30521';
+	var returnFlag = getCookie("returnFlag");
+	var returnFlagTime = getCookie("returnTime");
+	
+	var favorite_flag = false;
+	var fix_flag = false;
+	var question_flag = false;
+	
+	if(appOsType != ""){
+		appOsType = getCookie("osType");
+		
+		if(getCookie("osType") != "" && getCookie("osType") != "undefined"){
+			appOsType = getCookie("osType");
+			window.osType = getCookie("osType");
+		}else{
+			if(urlParam["appOsType"] != ""){
+				setCookie("osType", urlParam["appOsType"]);
+				appOsType = urlParam["appOsType"];
+				window.osType = urlParam["appOsType"];
+			}
+		}
+	}
+	
+	// 지도 위치 정보 저장
+	var locLat = getCookie("locLat");
+	var locLog = getCookie("locLog");
+	
+	if(locLat != null && locLat != ""){
+		nMap.defaultLatitude = locLat;
+	}
+	if(locLog != null && locLog != ""){
+		nMap.defaultLongitude = locLog;
+	}
+
+	if (loginYn === 'Y') {
+		var loginUsrSeq = '882007';
+		setUserInfo(loginUsrSeq);
+	}
+
+	$(function(){	
+		var mbRegYn = '';
+		resizeTab();
+		// 반납 안내 화면 확인 버튼 클릭 했을때
+		$("#returnBtn").on("click", function(){
+			setCookie("returnFlag", "Y");
+			setCookie("returnTime", returnDttm);
+			location.href="/main.do";
+		});
+
+		$(".m_menu").on("click", function(){
+			location.href="/myLeftPage.do";
+		});
+		
+		// 반납 안내 화면 고장신고 페이지 이동
+		$("#fixBtn").on("click",function(){
+			location.href="/app/err/moveErrReportPage.do?bikeNo="+rentBikeNo;
+		});
+		
+		if(mbRegYn == 'N'){
+			alert('개인정보 변경이 필요합니다.');
+			location.href = "/app/mybike/memberInfo/memberInfoEdit.do";
+			return;
+		}
+		
+		$(".first > span").addClass("on");
+		
+		$(".m_global").click(function(){
+			event.preventDefault();
+			$(".location_info").css('display','none'); 
+			$(".mask").css('display','block'); 
+			$(".change_lang").css('display','block');
+			
+			$(".mask_close").click(function(){
+				$(".mask").css('display','none'); 
+				$(".change_lang").css('display','none'); 
+			});
+		});
+
+		$(".search_open").click(function(){
+			event.preventDefault();
+			$("#searchValue").val("");
+			$(".location_info").css('display','none'); 
+			$(".mask").css('display','block'); 
+			$(".search_content").css('display','block'); 
+			
+			$(".mask_close").click(function(){
+				$(".mask").css('display','none');
+				$(".search_content").css('display','none');
+			});
+		});
+		
+		$(".location_close").click(function(){
+			$(".location_info").css('display','none'); 
+		}); 
+		
+		$(".bike_tap > ul li").click(function(){
+			var child = $(this).children();
+			var id = child[0].id;
+			if(id == "elec"){
+				alert('준비중 입니다.');
+			
+			}else{
+				$("#tabId").val(id);
+				$("#"+id).addClass('on'); 
+				$(".bike_tap > ul li> span").not($("#"+id)).removeClass('on'); 
+				nMap.searchCoordinateToAddress(new naver.maps.LatLng(nMap.defaultLatitude , nMap.defaultLongitude), id);
+			}
+			naver.maps.Event.addListener(nMap.map, 'dragend', function() {
+				nMap.updateMarkers();
+			});
+
+			naver.maps.Event.addListener(nMap.map, 'zoom_changed', function() {
+				nMap.changeMarker();
+			});
+		});
+		
+		// 단체권 추가대여하기 이벤트
+		$("#addRent").on("click",function(){
+			goQrRent();
+		});
+		
+		if (loginYn === 'N') {
+			var urlParam = getUrlParams();
+			window.osType = 'android';
+			if(urlParam["appOsType"] == "android" || window.osType == "android"){
+				window.android.getLogin();
+			} else if(urlParam["appOsType"] == "ios" || window.osType == "ios"){
+				jsonData = {"call" : "getLogin"};
+				webkit.messageHandlers.ioscall.postMessage(JSON.stringify(jsonData));
+				$("#ostype").val(urlParam["appOsType"]);
+			} else {
+				if( idCheck() && loginYn !== "Y" ) return;
+			}
+ 		}
+    	
+		if('true' == 'true' && 'false' == 'false'){
+			$.ajax({
+				type		: 'post',
+				url			: '/checkReconsentAjax.do',
+				dataType	: 'json',
+				data		: {},
+				async		: false,
+				success		: function(data){
+					if(data.resultMessage == 'Success'){
+						location.href = "/memberReconsent.do";
+					}
+				},
+				error : function(jqXHR, textStatus,errorThrown){
+					if(jqXHR.status === 500){
+						alert(textStatus);
+					} else {
+						return false;
+					}
+				}
+			});
+		}
+		if('' == 'Y'){
+			location.href = "/main.do";
+		}
+    	
+		var mainType = cookieVal("mainType");
+		if (mainType == 'text') {
+			$(".mainTypeMap").css('display', '');
+			$(".mainTypeText").css('display', 'none');
+		} else if (mainType == 'map') {
+			$(".mainTypeMap").css('display', 'none');
+			$(".mainTypeText").css('display', '');
+		} else {
+			$(".mainTypeMap").css('display', 'none');
+			$(".mainTypeText").css('display', '');
+		}
+		
+		/*
+		$(".mainTypeText").on("click", changeMainText);
+		$(".mainTypeMap").on("click", changeMainMap);
+		
+		// TODO 내용 확인 필요
+			showRight.onclick = function() {
+			location.href="/rightPage.do";
+		};
+		*/
+ 
+		// 반납 확인
+		if (loginYn === 'Y' && returnDttm !== '') {
+			//60초후 메인 이동
+			returnTimerID = setTimeout( goMain, 30 * 1000);//특정시간 이후 함수 실행
+		}
+    	
+		// 20190829, && partyVoucherSeq == 0
+		var partyVoucherSeq = '0';
+		
+		if (loginYn === 'Y' && isChkRent == 'false' && rentClsCd != '' && partyVoucherSeq == 0) {
+			rentChkTimerID = setTimeout( checkRent, 60 * 1000);//특정시간 이후 함수 실행
+		}
+    	
+    	
+		if (loginYn === 'Y' && isChkRent == 'true' && rentClsCd !== '' && partyVoucherSeq == 0) {
+			// 수동 반납을 위한 좌표 획득
+			getUsrGpsInfo();
+			var returnTime = mysqlTimeStampToDate('');
+			var now = new Date();
+			var countTime = Math.floor((returnTime - now) / 60 / 1000);
+			if(countTime < 0){
+				$("#timename").text('초과시간');
+				$("#countdown").text(Math.abs(countTime));
+				var sum = Math.floor(Math.abs(countTime)/5) * 200;
+				if (sum >= 30000) {
+					sum = 30000;
+				}
+				$("#exceedSum").text('예상초과금액 : '+comma(sum)+'원');
+				countdown('countdown', Math.abs(countTime));
+			}else{
+				$("#timename").text('남은시간');
+				$("#countdown").text(Math.abs(countTime));
+				countdown('countdown', Math.abs(countTime));
+			}
+		} else {
+    	    
+			resizeMap();
+			
+			window.osType = 'android';
+			
+			nMap.setMap();
+				
+			var locationCustomControl = new naver.maps.CustomControl(locationBtnHtml, {
+				position: naver.maps.Position.RIGHT_CENTER
+			});
+			 
+			// locationCustomControl.setMap(nMap.map);
+			findLocation(); 
+   
+			var domEventListener = naver.maps.Event.addDOMListener(locationCustomControl.getElement(), 'click', function() {
+				findLocation("location");
+			});
+	        
+			//findLocation();
+			
+			$("#searchValue").on("click" , searhText);
+	           
+			// 2019.02.20
+			naver.maps.Event.addListener(nMap.map, 'dragend', function() {
+				// 2019.02.20
+				//$("#searchParameter").val("stationName").attr("selected", "selected");
+				//$(".selected-display").html('지역구');
+				//$("#searchValue").val('');
+				//nMap.viewType = '';
+				nMap.updateMarkers();
+			});
+
+			naver.maps.Event.addListener(nMap.map, 'zoom_changed', function() {
+				nMap.changeMarker();
+			});
+		}
+    	
+		// 위치 정보 못 찾는 경우를 대비해서 사용
+		if ( autocompleteStationName.length == 0 ) {
+			onErrorGeolocation();
+		}
+		
+		// 현재위치 아이콘 클릭 이벤트
+		$(".refresh").on("click",function(){
+			findLocation();
+			nMap.reloadData(new naver.maps.LatLng(), $("#tabId").val());
+		});
+		
+		
+		
+		// 즐겨찾기 아이콘 클릭 이벤트
+		$(".side_favorite").on("click", function(){
+			if('Y' == 'Y'){
+				if(!favorite_flag){
+					favorite_flag = true;
+					location.href="/app/mybike/favoriteStation.do";	
+					return;
+				}
+			}else{
+				// 2019.02.20 영어 추가
+				if(confirm( langClsCd == 'en' ? 'Available After Login' : '로그인 후 즐겨찾기가 가능합니다.')){
+					doubleSubmitFlag = false;		// 2019.02.20 대여실패 시 추가
+					location.href="/login.do";
+					return false;
+				}
+			}
+		});
+		
+		// 반납안내 아이콘 클릭 이벤트
+		$(".fix").on("click", function(){
+			//location.href="/app/err/moveErrReportPage.do";	
+			$(".new_float_icon_mask_2").show();
+			
+			$(".new_float_close_2").click(function(){
+				$(".new_float_icon_mask_2").css('display','none'); 
+			});
+			
+		});
+		
+		// 이용안내 버튼 클릭
+		$(".question").on("click", function(){
+			if(!question_flag){
+				question_flag = true;
+				location.href="/info/infoReg.do";	
+				return;
+			}
+		});
+		
+		$(".new_float_icon").click(function(){
+			$(".new_float_icon_mask").css('display','block');
+			$(".new_float_info_wrap").css('display','block');  
+			
+			$(".new_float_close").click(function(){
+				$(".new_float_icon_mask").css('display','none'); 
+			});
+		});
+		
+		$("html").click(function(e){
+			var thisTarget = $(e.target).closest('.bike_tap').hasClass("bike_tap");
+			var firstTarget = $(e.target).closest('.bike_tap > ul > li').hasClass("first");
+			
+			if(thisTarget){
+				if(firstTarget){
+					$("#new_float_icon").hide();
+				}else{
+					$("#new_float_icon").show();
+					var divTop = e.clientY;
+					var divLeft = e.clientX;
+					
+					$("#new_float_icon").css({
+						  "top" : divTop - 48
+						, "left" : divLeft - 63
+					}).show();
+				}
+			}else{
+				$("#new_float_icon").hide();
+			}
+		});
+		
+		// 타임 이미지 클릭 이벤트
+		$("#timerImg").on("click", function(){
+			location.href="/main.do";
+		});
+    });
+
+	// TODO 사용처 확인 필요 : 자동 로그인 정보 확인
+	function loginResultInfo(json) {   
+		var deJson = decodeURIComponent(json);
+		var loginInfo = $.parseJSON(deJson.toString());
+		
+		//push 메세지용 사용자 디바이스 Id,osType
+		var deviceId = loginInfo.token;
+		var deviceOsType = loginInfo.osType;
+		var snsType = loginInfo.snsType;
+
+		$("#usrDeviceId").val(deviceId);
+		$("#ostype").val(deviceOsType);
+		
+		commonAjax.getAjax("/isLoginStatus.do","json",{}, function(data){			
+			if(data){
+				var isLogin = data.isLogin == true ? true : false;
+				if (!isLogin) { 
+					if(loginInfo.id !== "" && loginInfo.auto === "Y"){
+						$("[name='j_username']").val(loginInfo.id);
+						$("[name='j_password']").val(AES_Decode(loginInfo.pw));
+						$("#loginCheck").attr('checked', true);
+						$("#loginCheck").val("on");
+						//$("#loginchk").val("on");
+						
+						//자동로그인
+						var urlParam = getUrlParams();
+						if(urlParam["logout"] !== "true"){
+							loginFnc();
+						}
+						
+					} else if (snsType != "undefined" && snsType != "" && loginInfo.auto === "Y"  && loginYn != 'Y') {
+						switch (loginInfo.snsType) {
+						case "KAKAO":
+							goSnsLogin(0);	
+							break;
+						case "FACEBOOK":
+							goSnsLogin(1);	
+							break;
+						case "NAVER":
+							goSnsLogin(2);	
+							break;
+						}
+					}
+				}
+			}
+		});
+	};
+	
+	function loginFnc() {
+		  	
+		var regExp = /^0;1([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+		var usrId = $("[name='j_username']").val();
+		var urlParam = getUrlParams();
+		
+		//로그인 유지 체크
+		var usrId = $("[name='j_username']").val();
+		var usrPassword = $("[name='j_password']").val();
+		var encodePassword = AES_Encode(usrPassword);
+		var reEncodePassword = encodePassword.replace(/[\r|\n]/g, "");
+		var jsonData = null;
+		var loginInfo = null;
+		var expdate = new Date();
+		expDate = new Date(parseInt(expdate.getTime()));
+			
+		if($("#loginCheck").val() == "on"){
+			jsonData = {"id" : usrId, "pw" : reEncodePassword, "auto" : "Y", "snsType" : "", "call" : "setLogin"};
+			loginInfo = JSON.stringify(jsonData);
+			
+			if(urlParam["appOsType"] == "android"){
+				window.android.setLogin(loginInfo);
+			} else if(urlParam["appOsType"] == "ios"){
+				webkit.messageHandlers.ioscall.postMessage(loginInfo);
+			} else {
+				expDate.setFullYear(expDate.getFullYear() + 3);
+				SetCookie("SPBcookieSaveid", loginForm.memid.value, expDate);
+				SetCookie("SPBcookieSavepw", AES_Encode(loginForm.mempw.value), expDate); 
+				
+				loginSubmit();
+			}
+		} else {
+			jsonData = {"id" : "", "pw" : "", "auto" : "N", "auto" : "Y", "call" : "setLogin"};
+			loginInfo = JSON.stringify(jsonData);
+			
+			if(urlParam["appOsType"] == "android"){
+				window.android.setLogin(loginInfo);
+			} else if(urlParam["appOsType"] == "ios"){
+				webkit.messageHandlers.ioscall.postMessage(loginInfo);
+			} else {
+				expDate.setDate(expDate.getDate() -1);//cookie delete
+				SetCookie("SPBcookieSaveid", loginForm.memid.value, expDate);
+				SetCookie("SPBcookieSavepw", AES_Encode(loginForm.mempw.value), expDate);
+				// 2019.03.18
+				
+				loginSubmit();
+			}
+		}
+	};
+    
+	function loginSetSuccess(json){
+		var deJson = decodeURIComponent(json);
+		var saveLoginInfo = $.parseJSON(deJson.toString());
+		if (saveLoginInfo.id != "") {
+			loginSubmit();
+		}
+	};
+	
+	function loginSubmit(){
+		//1.자동로그인 체크		
+		 if ($('#loginCheck').is(':checked'))
+		 {
+			var pwde = AES_Encode($("#mempw").val());
+			 $("#mempw").val(pwde);				
+		}else{			
+		//transkey
+			//mtk.fillEncData();
+		}
+		$("[name='loginForm']").attr("action", "/j_spring_security_check");
+		$("[name='loginForm']").submit();
+	}
+    
+	function idCheck(){   
+		var loginid = cookieVal("SPBcookieSaveid");
+		var loginpw = cookieVal("SPBcookieSavepw");
+		if(loginid != ""){
+			$("#loginCheck").val("on");			
+			$("#j_username").val( loginid );
+			$("#j_password").val( loginpw );
+		
+			$("[name='j_username']").focus();
+			$("[name='j_password']").focus();
+		
+			//자동로그인
+			var urlParam = getUrlParams();
+			if(urlParam["logout"] !== "true"){
+				loginFnc();
+				return true;
+			}
+		}
+		return false;
+	}
+    
+	function goMain() {
+		location.href="/main.do";
+	}
+    
+	// Timer 표출용
+	function mysqlTimeStampToDate(timestamp) {
+		var regex=/^([0-9]{2,4})-([0-1][0-9])-([0-3][0-9]) (?:([0-2][0-9]):([0-5][0-9]):([0-5][0-9]))?$/;
+		var parts=timestamp.replace(regex,"$1 $2 $3 $4 $5 $6").split(' ');
+		return new Date(parts[0],parts[1]-1,parts[2],parts[3],parts[4],parts[5]);
+	}
+	
+	// 2019.02.20 중복 세팅
+	// var deviceType = '';
+    
+	function checkDevice() {
+		//디바이스 체크 fnc
+		var mobileKeyWords = new Array('iPhone','iPad', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson');
+		var deviceName = "";
+		for (var word in mobileKeyWords){
+			if (navigator.userAgent.match(mobileKeyWords[word]) != null){
+				deviceName = mobileKeyWords[word];
+				break;
+			}
+		}
+		return deviceName;
+	};
+	
+	// TODO
+	function getUsrGpsInfo() {
+		
+/* 		if ( appOsType === undefined || appOsType === "web" || appOsType === "") { //웹, 모바일웹의 경우
+			if (navigator.geolocation) {
+				var options = {
+					enableHighAccuracy : true,
+					timeout : 10000,
+					//timeout : 100,
+					maximumAge : 6000
+				};
+				
+				// navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation, options);
+				if ( realStationList == null || realStationList.length == 0 ) {
+					navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation, options);
+				} else {
+					navigator.geolocation.getCurrentPosition(onSuccessGeolocation1, onErrorGeolocation1, options);
+				}
+				
+			} else {
+				alert("이 브라우저는 Geolocation를 지원하지 않습니다.");
+				location.replace(returnSta.replaceUrl);
+			}
+	
+		} else { //앱으로 접속할 경우 */
+		if ( window.osType === 'android' || appOsType === "android") {
+			window.android.gpsStart();
+		} else if (window.osType === 'ios' || appOsType === "iPad" || appOsType === 'ios') {
+			webkit.messageHandlers.ioscall.postMessage('{"call":"gpsStart"}');
+		} else {
+			if ( checkDevice() == "iPhone" ) {
+				webkit.messageHandlers.ioscall.postMessage('{"call":"gpsStart"}');
+			} else if ( checkDevice() == "android" ) {
+				window.android.gpsStart();
+			} else {
+				// 2019.02.20 
+				if ("geolocation" in navigator) {
+					navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
+				} else {
+					onErrorGeolocation();
+				}
+			}
+		}
+							
+	};
+    
+	function findLocation( param ) {
+		// deviceType = checkDevice();
+		try {
+			getUsrGpsInfo();
+		} catch( e ) {
+			onErrorGeolocation();
+		}
+	};
+
+	function goBikeRent(infoData) {
+		if(!doubleSubmitCheck()){
+			var rentType ='RCC_001';
+			var voucherSeq = '1623974';
+			var partyVoucherSeq = '0';
+			var inputAr = null;
+			if (loginYn == 'Y') {
+				if(partyVoucherSeq !='0' && partyVoucherSeq != '' && voucherSeq !='0' && voucherSeq != '') {
+					$.confirm({
+						title: '단체권 사용 여부',
+						content: '단체권을 사용하시겠습니까?',
+						buttons: {
+							단체권사용 : function () {
+								rentType ='RCC_004';
+								voucherSeq = '0';
+								
+								inputAr = [$('<input>', {type : 'hidden', name : "stationId"}).val(infoData.stationId)
+										,$('<input>', {type : 'hidden', name : "stationName"}).val(infoData.stationName)
+										,$('<input>', {type : 'hidden', name : "rentType"}).val(rentType)
+										,$('<input>', {type : 'hidden', name : "voucherSeq"}).val(voucherSeq)];
+								$("#frm").append(inputAr).attr({action : "/app/rent/"+rentType+"/moveRentalStationList.do", method : 'post'}).submit();
+							},
+							회원권사용 : function () {
+								rentType ='RCC_001';
+								inputAr = [$('<input>', {type : 'hidden', name : "stationId"}).val(infoData.stationId)
+										,$('<input>', {type : 'hidden', name : "stationName"}).val(infoData.stationName)
+										,$('<input>', {type : 'hidden', name : "rentType"}).val(rentType)
+										,$('<input>', {type : 'hidden', name : "voucherSeq"}).val(voucherSeq)];
+								$("#frm").append(inputAr).attr({action : "/app/rent/"+rentType+"/moveRentalStationList.do", method : 'post'}).submit();
+							}
+						}
+					});
+			           
+				} else if (partyVoucherSeq !='0' && partyVoucherSeq != ''){
+					rentType ='RCC_004';
+					voucherSeq = '0';
+					inputAr = [$('<input>', {type : 'hidden', name : "stationId"}).val(infoData.stationId)
+							,$('<input>', {type : 'hidden', name : "stationName"}).val(infoData.stationName)
+							,$('<input>', {type : 'hidden', name : "rentType"}).val(rentType)
+							,$('<input>', {type : 'hidden', name : "voucherSeq"}).val(voucherSeq)];
+					$("#frm").append(inputAr).attr({action : "/app/rent/"+rentType+"/moveRentalStationList.do", method : 'post'}).submit();
+				} else if (voucherSeq !='0' && voucherSeq != ''){
+					rentType ='RCC_001';
+					inputAr = [$('<input>', {type : 'hidden', name : "stationId"}).val(infoData.stationId)
+							,$('<input>', {type : 'hidden', name : "stationName"}).val(infoData.stationName)
+							,$('<input>', {type : 'hidden', name : "rentType"}).val(rentType)
+							,$('<input>', {type : 'hidden', name : "voucherSeq"}).val(voucherSeq)];
+					$("#frm").append(inputAr).attr({action : "/app/rent/"+rentType+"/moveRentalStationList.do", method : 'post'}).submit();
+				} else {
+					// 2019.02.27
+					alert( ( langClsCd == 'en' ? 'Do Not Have a Voucher' : '이용권이 없습니다.' ));
+					return false;
+				}
+			} else {
+				// 2019.02.27
+				alert( ( langClsCd == 'en' ? 'Available After Login' : '로그인 후 대여가 가능합니다.' ));
+				doubleSubmitFlag = false;		// 2019.02.20 대여실패 시 추가
+				location.href="/login.do";
+				return false;
+			}
+		}
+	}
+    
+	function doubleSubmitCheck(){
+		if(doubleSubmitFlag){
+			return doubleSubmitFlag;
+		}else {
+			doubleSubmitFlag = true;
+			return false;
+		}
+	} 
+    
+	function goFavoriteStation(infoData) {
+		if (loginYn == 'Y') {
+			var usrSeq = '882007';
+			      
+			var inputAr = [$('<input>', {type : 'hidden', name : "stationId"}).val(infoData.stationId)
+						,$('<input>', {type : 'hidden', name : "usrSeq"}).val(usrSeq)];
+			
+			commonAjax.postAjax("/app/station/addFavoriteStationProc.do", "json", {usrSeq:usrSeq, stationId:infoData.stationId} ,function(data){
+				if(data.checkResult > 0) {
+					alert(data.resultMessage);
+					location.reload();
+					return false;
+				} else {
+					alert(data.resultMessage);
+					return false;
+				}
+			}); 
+		} else {
+			alert( ( langClsCd == 'en' ? 'Available After Login' : '로그인 후 즐겨찾기가 가능합니다.' ));
+			return false;
+		}
+	}
+    
+	function searhText(e){
+		e.preventDefault();
+		e.stopPropagation();
+		
+		if (e.type == "click") {
+			//$("#guide_box").css('display', "none");
+		}
+	  	
+		// 2019.02.20 추가 
+		if ( autocompleteStationName.length > realStationList.length ) {
+			autocompleteStationName = new Array();
+			for( var i in realStationList ) {
+				autocompleteStationName.push({
+					label : realStationList[i].stationName,
+					stationLatitude : realStationList[i].stationLatitude,
+					stationLongitude : realStationList[i].stationLongitude
+				});
+			}
+		}	
+		
+		$("#searchValue").autocomplete({
+			source : autocompleteStationName 
+			,matchContains: true
+			,selectFirst: false
+			,minLength: 2
+			,autoFocus:true
+			, select : function(e, ui, data ){
+				if(nMap.map.zoom == 9){
+					nMap.map.setZoom(12);
+				}
+				nMap.map.setCenter(  new naver.maps.LatLng(ui.item.stationLatitude, ui.item.stationLongitude ) )
+				nMap.updateMarkers();
+				// 2019.02.20 추가
+				//$("#guide_box").css('display', "inline");
+				
+				//$("#guide_box").attr("tabindex", -1).focus();
+				$("#searchValue").val("");
+				$("#search_data > ul > li").remove();
+				$(".mask > ul").hide();
+				$(".mask").hide();
+			}
+		});
+		$("#searchValue").autocomplete("option", "appendTo", "#search_data");
+				
+	}
+    
+	function searchStation(e){
+		// 2019.02.20
+		return;
+		
+		e.preventDefault();
+		e.stopPropagation();
+	    	
+		if($("[name='searchValue']").val() === "") {
+			alert("내용을 입력해 주세요.");
+			$("[name='searchValue']").focus();
+			return false;
+		}
+  	
+		var stationNum = $("#searchValue").val();
+		stationNum = stationNum.split(".");
+		if (stationNum.length == 1) {
+			$("#searchValue").val(stationNum[0]);
+		} else {
+			//$("#searchParameter option:eq(1)").attr("selected", "selected");
+			$("#searchParameter").val("stationName").attr("selected", "selected");
+			$(".selected-display").html('대여소명');
+			if ($("[name='searchParameter']").val() === "stationNo") {
+				$("#searchValue").val(stationNum[0]);
+				
+				var L_szNum = (stationNum[0].length);
+				if( stationNum[0] == "" ){
+					alert ( " 숫자를 입력해주세요" )
+					$("#searchValue").val("");
+					$("#searchValue").focus();
+					return false;
+				} else {
+					var num_check=/^[0-9]*$/;
+					if(num_check.test(stationNum[0])) {
+						if( L_szNum < 2 || L_szNum > 5 ){
+							alert("2~5글자의 숫자만 입력할수 있습니다.");
+							$("#searchValue").val("");
+							$("#searchValue").focus();
+							return false;
+						}
+					} else {
+						alert ( "숫자만 입력할 수 있습니다." );
+						$("#stationName").val("");
+						$("#stationName").focus();
+						return false;
+					}
+				}
+   	
+			} else {
+				$("#searchValue").val(stationNum[1]);
+			}
+		}
+  	
+		var searchParameter = $("#searchParameter").val();
+		var searchValue = $("#searchValue").val();
+		
+		var S_szNum = (searchValue.length);
+		if( S_szNum < 2 ){
+			alert('검색어를 2자리 이상 입력해 주세요.');
+			$("#searchValue").val("");
+			$("#searchValue").focus();
+			return false;
+		}
+  	
+		nMap.sigugun = '';
+		
+		nMap.viewType = "search";
+		
+		station.getMapData({stationGrpSeq : '', searchParameter : searchParameter, searchValue : searchValue}, "infoBox");
+	}
+    
+	function onSuccessGeolocation(position) {
+		//nMap.searchCoordinateToAddress(new naver.maps.LatLng(position.coords.latitude,
+		//position.coords.longitude));
+		nMap.setGPSLoc(position.coords.latitude,position.coords.longitude);
+	}
+    
+	function onErrorGeolocation() {
+		nMap.searchCoordinateToAddress(new naver.maps.LatLng(nMap.defaultLatitude , nMap.defaultLongitude));
+	}
+    
+	// 기존 위치 정보 찾은 경우는 조회 안함
+	function onSuccessGeolocation1(position) {
+		nMap.map.setCenter(  new naver.maps.LatLng( position.coords.latitude, position.coords.longitude )  );
+		nMap.updateMarkers();
+	}
+
+	// 기존 위치 정보 찾은 경우는 조회 안함
+	function onErrorGeolocation1() {
+		//nMap.map.setCenter(  new naver.maps.LatLng( position.coords.latitude, position.coords.longitude )  );
+		//nMap.updateMarkers();
+		getUsrGpsInfo();
+	}
+    
+	function countdown(elementId, min) {
+		var element, endTime, hours, mins, msLeft, time,timer;
+		var timeTerm = 4;
+		var timerID = "";
+		if(rentClsCd =='RCC_005' || rentClsCd =='RCC_006'){
+			timeTerm = 2;
+			if (min >= 117 && min <= 120) {
+				$("#unLockText").html('<a href="javascript:selfLock();" ><img src="/images/ico_ing_guide1.png" alt="">잠금 해제</a>');
+			}
+		} else {
+			if (min >= 57 && min <= 60) {
+				$("#unLockText").html('<a href="javascript:forceUnLock();" ><img src="/images/ico_ing_guide1.png" alt="">잠금 해제</a>');
+			}
+		}
+		var timeTermImg='nomal';
+		var timeTermImgTmp= 0;
+
+		function updateTimer(){
+			msLeft = endTime - (+new Date);
+			checkRentStatus();
+			var ceil = Math.ceil(msLeft / 60) ;
+			if ( Math.ceil(ceil / 1000) <= 0 ) {
+				$("#timerImg").css({"background": "url('/img/timeline_late.png')", "background-position-x":"center", "background-repeat":"no-repeat", "position":"relative", "background-size":"100%"});
+				alert('기본 대여시간이 초과 되었습니다.');//기본 대여 시간이 초과되었습니다. 다시 시도해주세요.
+				clearTimeout(timerID);
+				doubleSubmitFlag = false;
+				chkTimeout = false;
+			} else {
+				time = new Date( msLeft );
+				hours = time.getUTCHours();
+				mins = time.getUTCMinutes();
+				element.innerHTML = Math.floor(ceil / 1000);
+				
+				timerID = setTimeout( updateTimer, 60 * 1000);//특정시간 이후 함수 실행
+				timerImg = Math.floor(25 - (Math.floor(ceil / 1000) * timeTerm / 10)) ;
+				
+				if(rentClsCd =='RCC_005' || rentClsCd =='RCC_006'){
+					if (Math.floor(ceil / 1000) >= 117 && Math.floor(ceil / 1000) <= 120) {
+						$("#unLockText").html('<a href="javascript:forceUnLock();" ><img src="/images/ico_ing_guide1.png" alt="">잠금 해제</a>');
+					} else {
+						$("#unLockText").html('<a href="javascript:selfLock();" ><img src="/images/ico_ing_guide1.png" alt="">임시 잠금 해제</a>');
+					}
+				} else {
+					if (Math.floor(ceil / 1000) >= 57 && Math.floor(ceil / 1000) <= 60) {
+						$("#unLockText").html('<a href="javascript:forceUnLock();" ><img src="/images/ico_ing_guide1.png" alt="">잠금 해제</a>');
+					} else {
+						$("#unLockText").html('<a href="javascript:selfLock();" ><img src="/images/ico_ing_guide1.png" alt="">임시 잠금 해제</a>');
+					}
+				}
+				
+				if (timerImg < 10) {
+					timerImg = "0" + timerImg;
+				}
+				$("#timerImg").css({"background": "url('/img/timeline_"+timerImg+".png')", "background-position-x":"center", "background-repeat":"no-repeat", "position":"relative", "background-size":"100%"});
+			}
+		}
+
+		function checkRentStatus() {
+			var usrSeq = '882007';
+			var rentType = '';
+			rentType = 'RCC_001';
+			
+			commonAjax.postAjax("/app/rent/isChkRentStatus.do", "json", {usrSeq:usrSeq, rentType:rentType} ,function(data){
+				if(data.isRent) {
+					//alert('대여중');
+				} else {
+					//alert('반납');
+					location.href="/main.do";
+					return false;
+				}
+			}); 
+		}
+		element = document.getElementById( elementId );
+		endTime = (+new Date) + 1000 * min * 60;
+		updateTimer();
+	}
+    
+	function checkRent() {
+		var rentType = 'RCC_001';
+		var usrSeq = '882007';
+		
+		commonAjax.postAjax("/app/rent/isChkRentStatus.do", "json", {usrSeq:usrSeq, rentType:rentType} ,function(data){
+			if(data.isRent) {
+				//alert('대여 완료');
+				location.href="/main.do";
+				return;
+			} else {
+				return;
+			}
+		});
+	}
+			
+	$(window).resize(function(){ //브라우저 창 사이즈가 변경될때마다 
+		resizeMap();
+		resizeTab();
+	}); 
+
+	/*
+	function resizeMap() {
+		var h = $(window).height() - 180; //브라우저 창의 높이값을 가져와 
+	    $('#mapDiv').css("height",h) //div#map 에게 높이값을 부여함 
+	}
+	*/
+	
+	function resizeMap() {
+		var h = $(window).height() - 160; //브라우저 창의 높이값을 가져와 
+		$('#mapDiv').css("height",h) //div#map 에게 높이값을 부여함 
+	}
+	
+	function goQrRent() {
+		if(!doubleSubmitCheck()){
+			doubleSubmitFlag = true;
+			
+			// 로그인 상태 확인
+			if (loginYn === 'N') {
+				alert("회원은 로그인 후 이용 바랍니다.");
+				location.href="/login.do";
+				return false;
+			}
+			
+			var delayFlg = 'false'==='true' ? true : false;
+			var businessTime = 'true' === 'true' ? true: false;
+		
+			/**대여소 운휴 체크...*/
+	    	if(delayFlg) {
+	    		alert("공공자전거 운휴 상태입니다.");
+	    		doubleSubmitFlag = false;
+	    		return false;
+	    	} else {
+	    		//운영시간 체크
+		    	if(!businessTime) {
+		    		alert("대여소 운영시간이 아닙니다.("+bTime[0]+" ~ "+bTime[1]+")");
+		    		doubleSubmitFlag = false;
+		    		return false;
+		    	} else {
+		    		if(window.osType !== 'web') {
+						var rentType ='RCC_001';
+						var voucherSeq = '1623974';
+						var partyVoucherSeq = '0';
+						var partyUse = '0';
+						var isChkRent = false;
+						if(partyVoucherSeq !='0' && partyVoucherSeq != '' && (voucherSeq !='0' && voucherSeq != '' && !isChkRent)) {
+							/* alert("단체권 사용은 준비중입니다.");
+							return false; */
+							$.confirm({
+								title: '단체권 사용 여부',
+								content: '단체권을 사용하시겠습니까?',
+								buttons: {
+									단체권사용 : function () {
+										rentType ='RCC_004';
+										voucherSeq = '0';
+										tryQRRent(rentType, voucherSeq);
+									},
+									회원권사용 : function () {
+										rentType ='RCC_001';
+										voucherSeq = '1623974';
+										tryQRRent(rentType, voucherSeq);
+									}
+								}
+							});
+						 	
+						} else if (partyVoucherSeq !='0' && partyVoucherSeq != ''){
+							rentType ='RCC_004';
+							voucherSeq = '0';
+							tryQRRent(rentType, voucherSeq);
+						} else if (voucherSeq !='0' && voucherSeq != ''){
+							rentType ='RCC_001';
+							voucherSeq = '1623974';
+							tryQRRent(rentType, voucherSeq);
+						} else {
+							// 2019.02.27
+							alert( ( langClsCd == 'en' ? 'Do Not Have a Voucher' : '이용권이 없습니다.' ));
+							doubleSubmitFlag = false;
+							return false;
+						}
+					}
+		    	}
+	    	}
+			
+		} else {
+			alert('처리중 입니다.');
+		}
+	}
+	
+	
+	function tryQRRent(rentType, voucherSeq) {
+		//부정 대여를 방지하기위해 대여여부를 체크.
+		//commonAjax.getAjax("/app/rent/isChkRentStatus.do","json",{rentType : rentType, rentYn : 'N'}, function(data){
+		commonAjax.getAjax("/app/rentCheck/isChkRentStatus.do","json",{rentType : rentType, rentYn : 'N'}, function(data){			
+			
+		//commonAjax.getAjax("/app/rent/isChkRentStatus.do","json",{rentType : 'RCC_001'}, function(data){
+			if(data){
+				var isChk = data.isRent == true ? true : false;
+				var resultCode = data.resultCode;
+				if(!isChk && resultCode == 0) {
+					/** 블랙리스트, 초과요금 체크*/
+					commonAjax.getAjax("/app/rent/chkUserSataus.do", "json", {} ,function(data){
+						if(data){
+							if(data.resultMessage !== '') {
+								alert(data.resultMessage);
+								doubleSubmitFlag = false;
+								return false;
+							}
+							if(data.checkResult) {
+								//QR코드 대여
+								var loginId = 'woodencatty';
+								if (loginId.indexOf('spbtest') === 0) {
+									app.isTest = true;
+								}
+								
+								var usrSeq = '882007';
+								setUserInfo(usrSeq);
+									
+								app.rentType = rentType;
+								app.unLockType = "rent";
+								app.voucherSeq = voucherSeq;
+								app.deviceType = window.osType;
+								app.targetUrl = '/app/rent/'+rentType+'/getQRCodeDataInfo.do';
+								setCookie("rentType", rentType);
+								setCookie("returnFlag", "N");
+								setCookie("unLockType", "rent");
+								app.QRscanStart();
+							} else {
+								alert('QR 코드 대여는 앱에서만 가능합니다.');//QR 코드 대여는 앱에서만 가능합니다.
+								doubleSubmitFlag = false;
+								return false;
+							}
+						}
+					});	
+				} else if (resultCode == -1) {
+					alert("회원은 로그인 후 이용 바랍니다.");
+					doubleSubmitFlag = false;
+					location.href="/login.do";
+					return false;
+				} else if (rentType == 'RCC_004') {
+					alert("이미 대여중입니다.");
+					doubleSubmitFlag = false;
+					return false;
+				} else {
+					alert("이미 대여진행중입니다.");
+					doubleSubmitFlag = false;
+					return false;
+				}
+			}
+		});
+	}
+		
+	function selfLock() {
+		
+		if(!doubleSubmitCheck()){
+			doubleSubmitFlag = true;
+			$('#rentBikeText').text("임시 잠금 해제");
+			var serialNo = '';
+			
+			var tempDeviceName = '';
+			for (var i = serialNo.length; i < 8; i++) {
+				tempDeviceName += '0';
+			}
+			var deviceName = 'SPB-' + tempDeviceName + serialNo;
+
+			// 대여 상태 확인
+			commonAjax.getAjax("/app/rent/isChkRentStatus.do","json",{rentType : 'RCC_001'}
+	        , function(chkData){
+	        	if(chkData.isRent && chkData.resultCode == 0){
+	        		var usrSeq = '882007';
+				setUserInfo(usrSeq);
+					
+	        		$('#progress').css('display',''); 
+	        		$('#deviceName').val(deviceName);
+	        		app.rentType = 'RCC_001';
+	        		app.deviceType = window.osType;
+	        		app.couponTime = 0;
+	        		app.unLockType = 'self';
+	        		app.deviceName = deviceName;
+	        		setCookie("couponTime", "0");
+	        		setCookie("unLockType", "self");
+	        		$('#rentBikeText').text("단말기 연결중");
+	        		app.unLock();        		
+	        	} else if (chkData.resultCode == -1) {
+					alert("회원은 로그인 후 이용 바랍니다.");
+					location.href="/login.do";
+					return false;
+				}  else {
+	        		$('#progress').css('display','none'); 
+	        		alert('대여 중이 아닙니다.');
+	                doubleSubmitFlag = false;
+	                goHome();
+	                return false;
+	            }
+	        });
+		} else {
+			alert('처리중 입니다.');//처리중입니다.
+		}
+	}
+	
+	function forceUnLock() {
+		
+		if(!doubleSubmitCheck()){
+			doubleSubmitFlag = true;
+			$('#rentBikeText').text("잠금 해제");
+			var serialNo = '';
+			
+			var tempDeviceName = '';
+			for (var i = serialNo.length; i < 8; i++) {
+				tempDeviceName += '0';
+			}
+			var deviceName = 'SPB-' + tempDeviceName + serialNo;
+
+			var usrSeq = '882007';
+			setUserInfo(usrSeq);
+			
+    		$('#progress').css('display',''); 
+    		$('#deviceName').val(deviceName);
+    		app.rentType = rentType;
+    		app.deviceType = window.osType;
+    		app.couponTime = 255;
+    		app.unLockType = 'force';
+    		app.deviceName = deviceName;
+    		setCookie("couponTime", "255");
+    		setCookie("unLockType", "force");
+    		$('#rentBikeText').text("단말기 연결중");
+    		app.unLock(); 
+    		
+		} else {
+			alert('처리중 입니다.');//처리중입니다.
+		}
+	}
+	
+	//파티 임시잠금
+	function partySelfLock() {
+		if(!doubleSubmitCheck()){
+			doubleSubmitFlag = true;
+			$('#rentBikeText').text("임시 잠금 해제");
+			var serialNo = $("input[name='choice']:checked").val();
+			var rentType = $("input[name='choice']:checked").attr("data-ClsCd");
+			if(serialNo == null || serialNo == "undefined"){
+				alert('선택된 자전거가 없습니다.');
+				doubleSubmitFlag = false;
+				return;
+			}
+			
+			var tempDeviceName = '';
+			for (var i = serialNo.length; i < 8; i++) {
+				tempDeviceName += '0';
+			}
+			var deviceName = 'SPB-' + tempDeviceName + serialNo;
+			
+			// 대여 상태 확인
+			commonAjax.getAjax("/app/rent/isChkPartyRentStatus.do","json",{rentType : rentType, serialNo : serialNo}
+	        , function(chkData){
+	        	if(chkData.isRent){
+	        		var usrSeq = '882007';
+					setUserInfo(usrSeq);
+	        		$('#progress').css('display',''); 
+	        		$('#deviceName').val(deviceName);
+	        		app.rentType = rentType;
+	        		app.deviceType = window.osType;
+	        		app.couponTime = 0;
+	        		app.unLockType = 'self';
+	        		app.deviceName = deviceName;
+	        		setCookie("couponTime", "0");
+	        		setCookie("unLockType", "self");
+	        		/* app.deviceName = 'SSBK-0099997'; */
+	        		$('#rentBikeText').text("단말기 연결 중");
+	        		app.unLock();        		
+	        	}  else {
+	        		$('#progress').css('display','none'); 
+	        		alert('대여 중이 아닙니다.');
+	                doubleSubmitFlag = false;
+	                goHome();
+	                return false;
+	            }
+	        });
+		} else {
+			alert('처리중 입니다.');//처리중입니다.
+		}
+	}
+	
+	function goSnsLogin(snsType) {
+		app.deviceType = window.osType;
+		app.snsType = snsType;
+		app.invokeSnsLogin();
+	}
+	
+	function popTutorial() {
+		app.deviceType = window.osType;
+		app.popTutorial();
+	}
+	
+	function resizeTab(){
+		if($(".renting").length != 0){
+			if($(".tab1").hasClass("on")){
+				$(".remarks").hide();
+			}else{
+				$(".remarks").show();
+			}
+		}else if($("#rentinfo").length != 0){
+			$(".bike_tap").hide();
+			$(".remarks").hide();
+		}else if($("#mapDiv").is(':visible')){
+			$(".bike_tap").show();
+			$(".remarks").show();
+		}else{
+			$(".bike_tap").hide();
+			$(".remarks").hide();
+		}
+	}
+	
+	function setUserInfo(usrSeq) {
+		var tempSeq = '';
+		for (var i = usrSeq.length; i < 10; i++) {
+			tempSeq += '0';
+		}
+		usrSeq = tempSeq + usrSeq;
+		var jsonTestData = {"userseq" : usrSeq, "isuser" : true, "call" : "setUser"};
+		var userInfo = JSON.stringify(jsonTestData);
+		
+		var urlParam = getUrlParams();
+		window.osType = 'android';
+		if(urlParam["appOsType"] == "android" || window.osType == "android"){
+			window.android.setUser(userInfo);
+		} else if(urlParam["appOsType"] == "ios" || window.osType == "ios"){
+			webkit.messageHandlers.ioscall.postMessage(userInfo);
+		}
+	}
+	
+</script>
+</body>
+</html>

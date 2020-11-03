@@ -1,0 +1,9 @@
+POST /app/appVersion/appVersionRequest.do HTTP/1.1
+content-type: application/x-www-form-urlencoded
+User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0.1; SM-G900S Build/MMB29M)
+Host: www.bikeseoul.com:456
+Connection: Keep-Alive
+Accept-Encoding: gzip
+Content-Length: 33
+
+appVerInfo=1.0.32&osClsCD=OSS_001

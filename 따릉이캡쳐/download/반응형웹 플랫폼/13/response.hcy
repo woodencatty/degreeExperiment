@@ -1,0 +1,10 @@
+HTTP/1.1 200 
+Access-Control-Allow-Origin: https://www.bikeseoul.com:456
+Vary: Origin
+Access-Control-Allow-Credentials: true
+Cache-Control: no-cache
+Content-Type: application/xml;charset=utf-8
+Content-Length: 1012
+Date: Fri, 30 Oct 2020 10:38:24 GMT
+
+<?xml version="1.0" encoding="utf-8"?>	 <Root xmlns="http://www.nexacroplatform.com/platform/dataset" ver="5000" >	 <Parameters>	 <Parameter id="host" type="String">app.bikeseoul.com</Parameter>	 <Parameter id="ip" type="String">127.0.0.1</Parameter>	 <Parameter id="loginId" type="String">127.0.0.1_T_77981_WC</Parameter>	 <Parameter id="port" type="String">80</Parameter>	 <Parameter id="pageUrl" type="String">main.do</Parameter>	 <Parameter id="isWait" type="String">F</Parameter>	 <Parameter id="waitCnt" type="String">0</Parameter>	 <Parameter id="limitCnt" type="String">1000</Parameter>	 <Parameter id="session_time_out" type="String">30</Parameter>	 <Parameter id="waitQueueSize" type="String">0</Parameter>	 <Parameter id="waitMyCnt" type="String"></Parameter>	 <Parameter id="userAgent" type="String">mozilla/5.0 (linux; android 6.0.1; sm-g900s build/mmb29m; wv) applewebkit/537.36 (khtml, like gecko) version/4.0 chrome/86.0.4240.114 mobile safari/537.36eseoulapp</Parameter>	 </Parameters>	 </Root>	

@@ -1,0 +1,22 @@
+{
+  "app": "com.dki.spb_android",
+  "code": 200,
+  "duration": "912ms",
+  "headers": {
+    "Date": "Fri, 30 Oct 2020 10:39:53 GMT",
+    "Server": "Apache",
+    "Content-Language": "ko",
+    "Vary": "Accept-Encoding",
+    "Content-Encoding": "gzip",
+    "Content-Length": "17572",
+    "Keep-Alive": "timeout\u003d5, max\u003d100",
+    "Connection": "Keep-Alive",
+    "Content-Type": "text/html;charset\u003dutf-8"
+  },
+  "message": "OK",
+  "protocol": "HTTP/1.1",
+  "remoteIp": "14.49.46.12",
+  "remotePort": 456,
+  "sessionId": "e2ad8fee-3eef-46e4-b4ed-43f0d21d2cce",
+  "time": "2020-10-30 19:39:54"
+}

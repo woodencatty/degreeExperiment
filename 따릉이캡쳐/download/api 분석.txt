@@ -1,0 +1,12 @@
+/app/rent/<<RENT_TYPE>>/getQRBikeCodeDataInfo.do -> QR단말기 정보 요청
+   -RENT_TYPE = 대여 형식? 정기권? 카드결제?
+
+/app/rent/chkUserSataus.do -> 사용자 상태 확인
+
+/app/rentCheck/isChkRentStatus.do?rentType\u003dRCC_001\u0026rentYn\u003dN" -> 렌트
+
+       /app/rent/<<RENT_TYPE/exeQrRentSuccess.do -> 대여 성공시 잠금해제 오더
+
+
+     /app/rent/isChkRentStatus.do -> 앱에서 일정 시간마다 반납상태 확인(약 10초)
+           - 리스폰스로 false true  왔던게 그건가봄
