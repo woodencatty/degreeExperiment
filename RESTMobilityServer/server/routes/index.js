@@ -38,6 +38,7 @@ router.get('/request5', function(req, res, next) {
         'order' : 'open'
     }
 };
+request(order_open, function (error, response, body) {});
 
 });
 router.get('/request6', function(req, res, next) {
@@ -61,6 +62,7 @@ router.get('/request8', function(req, res, next) {
         'order' : 'close'
       }
 };
+request(order_close, function (error, response, body) {});
 
 });
 

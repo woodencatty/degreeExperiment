@@ -15,6 +15,7 @@ http.createServer((request, response) => {
     let body = [];
     request.on('data', (chunk) => {
       body.push(chunk);
+      console.log(chunk);
     }).on('end', () => {
       body = Buffer.concat(body).toString();
       response.end(body);
