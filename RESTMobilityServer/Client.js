@@ -10,9 +10,14 @@ const user_request = {
 };
 var i = 0;
 setInterval(() => {
+requestsent();
+
+}, 10);
+
+
+async function requestsent () {
     console.time(i);
     request(user_request, function (error, response, body) {
         console.timeEnd(i++);
     });
-
-}, 10);
+  }
