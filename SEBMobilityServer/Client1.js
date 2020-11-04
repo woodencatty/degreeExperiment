@@ -25,8 +25,6 @@ client.on('message', function (topic, message) {
 })
 
 
-var i = 0;
-
 var count = 0;
 setInterval(() => {
 requestsent();

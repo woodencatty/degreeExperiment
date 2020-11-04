@@ -49,7 +49,7 @@ server.on('publish', (packet, client)=>{
         'packet': packet
     }
   };
-
+  console.log(packet);
   request(user_request, function (error, response, body) {
 
 });
