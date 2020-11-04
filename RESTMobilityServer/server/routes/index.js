@@ -34,7 +34,7 @@ function interval(time) {
     }, time)
   }
 
-  interval(1000)
+  interval(100)
 
 var mobility_request1 = {
   url: 'http://59.9.86.21:3001/request',
