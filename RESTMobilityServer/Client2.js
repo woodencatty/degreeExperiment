@@ -4,7 +4,7 @@ const request = require('request');
 const fs = require('fs');
 
 
-var access = fs.createWriteStream('client2_stats.log');
+var access = fs.createWriteStream('/sdcard/Download/client2_stats.log');
 process.stdout.write = process.stderr.write = access.write.bind(access);
 process.on('uncaughtException', function(err) {
     //console.error((err && err.stack) ? err.stack : err);
