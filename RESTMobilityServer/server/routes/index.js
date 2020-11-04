@@ -25,7 +25,7 @@ function compute() {
   }
    
 function interval(time) {
-    setTimeout(function() {
+    setInterval(function() {
       compute(function() {
         interval(time)
       })
