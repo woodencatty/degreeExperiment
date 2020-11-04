@@ -4,7 +4,7 @@ var router = express.Router();
 const request = require('request');
 
 var pidusage = require('pidusage')
-var logger = require('./logger').createLogger('RESTserver_stats.log'); // logs to a file
+var logger = require('logger').createLogger('RESTserver_stats.log'); // logs to a file
 
 logger.format = function(level, date, message) {
     return message;
