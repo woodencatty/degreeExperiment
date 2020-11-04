@@ -22,10 +22,10 @@ var count = 0;
 setInterval(() => {
 requestsent();
 count ++;
-if(count>10000){
+if(count>1000){
     process.exit(1);
 }
-}, 10);
+}, 100);
 
 
 async function requestsent () {
