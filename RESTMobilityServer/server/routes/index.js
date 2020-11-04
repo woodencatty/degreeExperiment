@@ -4,14 +4,16 @@ var router = express.Router();
 const request = require('request');
 
 var pidusage = require('pidusage')
- 
+var logger = require('./logger').createLogger('RESTserver_stats.log'); // logs to a file
+
+logger.format = function(level, date, message) {
+    return message;
+  };
 
 function compute() {
     pidusage(process.pid, function (err, stats) {
         console.log("CPU : "+stats.cpu + "%")
-        console.log("MEM : "+stats.memory+"bytes")
-        console.log();
-        
+        logger.info(stats.cpu);
       // => {
       //   cpu: 10.0,            // percentage (from 0 to 100*vcore)
       //   memory: 357306368,    // bytes
