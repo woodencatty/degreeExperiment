@@ -12,7 +12,7 @@ var i = 0;
 setInterval(() => {
 requestsent();
 
-}, 100);
+}, 1000);
 
 
 async function requestsent () {
