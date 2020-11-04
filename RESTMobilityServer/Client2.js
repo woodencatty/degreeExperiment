@@ -24,7 +24,7 @@ count ++;
 if(count>3000){
     process.exit(1);
 }
-}, 10);
+}, 50);
 
 
 async function requestsent () {
