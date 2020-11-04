@@ -2,7 +2,7 @@ const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require('constants');
 const { exit } = require('process');
 const request = require('request');
 
-var logger = require('logger').createLogger('RESTserver_stats.log'); // logs to a file
+var logger = require('logger').createLogger('client1_stats.log'); // logs to a file
 
 logger.format = function(level, date, message) {
     return message;
