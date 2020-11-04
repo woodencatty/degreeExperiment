@@ -3,7 +3,7 @@ var client  = mqtt.connect('mqtt://59.9.86.21:3000')
 
 const fs = require('fs');
 
-var access = fs.createWriteStream('/sdcard/Download/client1_stats.log');
+var access = fs.createWriteStream('/sdcard/Download/client2_stats.log');
 process.stdout.write = process.stderr.write = access.write.bind(access);
 process.on('uncaughtException', function(err) {
     //console.error((err && err.stack) ? err.stack : err);
