@@ -1,6 +1,8 @@
 const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require('constants');
 const { exit } = require('process');
 const request = require('request');
+const fs = require('fs');
+
 
 var access = fs.createWriteStream('client2_stats.log');
 process.stdout.write = process.stderr.write = access.write.bind(access);
