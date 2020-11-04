@@ -17,9 +17,14 @@ const user_request = {
     }
 };
 var i = 0;
+
+var count = 0;
 setInterval(() => {
 requestsent();
-
+count ++;
+if(count>10000){
+    process.exit(1);
+}
 }, 10);
 
 
