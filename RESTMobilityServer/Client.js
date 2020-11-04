@@ -2,6 +2,13 @@ const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require('constants');
 const { exit } = require('process');
 const request = require('request');
 
+var logger = require('logger').createLogger('RESTserver_stats.log'); // logs to a file
+
+logger.format = function(level, date, message) {
+    return message;
+  };
+
+
 const user_request = {
     url: 'http://210.102.181.219:8080/request1',
     headers: {
@@ -19,6 +26,7 @@ async function requestsent () {
     var i = Math.floor(Math.random() * 100000) + 1
     console.time(i);
     request(user_request, function (error, response, body) {
-        console.timeEnd(i);
+        logger.info(console.timeEnd(i));
+
     });
   }
