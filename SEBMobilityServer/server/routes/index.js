@@ -1,9 +1,10 @@
-const aedes = require('aedes')()
-const server = require('net').createServer(aedes.handle)
-const port = 3000
+var express = require('express');
+var router = express.Router();
+
+const request = require('request');
 
 var pidusage = require('pidusage')
-var logger = require('logger').createLogger('SEB_Broker_stats.log'); // logs to a file
+var logger = require('logger').createLogger('RESTserver_stats.log'); // logs to a file
 
 logger.format = function(level, date, message) {
     return message;
@@ -34,23 +35,10 @@ function interval(time) {
   }
 
   interval(1000)
-
-
-server.listen(port, function () {
-  console.log('server started and listening on port ', port)
-})
-
-
-server.on('publish', (packet, client)=>{
-
-  var user_request = {
-    url: 'http://210.102.181.219:8080/request',
-    headers: {
-        'packet': packet
-    }
-  };
-
-  request(user_request, function (error, response, body) {
-
+/* GET home page. */
+router.get('/request', function(req, res, next) {
+        console.log(req.headers.packet);
+        res.end('ok');
 });
-})
+
+module.exports = router;
