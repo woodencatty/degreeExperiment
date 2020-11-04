@@ -1,12 +1,13 @@
 const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require('constants');
 const { exit } = require('process');
 const request = require('request');
+const fs = require('fs');
 
-var logger = require('logger').createLogger('client1_stats.log'); // logs to a file
-
-logger.format = function(level, date, message) {
-    return message;
-  };
+var access = fs.createWriteStream('client1_stats.log');
+process.stdout.write = process.stderr.write = access.write.bind(access);
+process.on('uncaughtException', function(err) {
+    //console.error((err && err.stack) ? err.stack : err);
+  });
 
 
 const user_request = {
@@ -26,7 +27,7 @@ async function requestsent () {
     var i = Math.floor(Math.random() * 100000) + 1
     console.time(i);
     request(user_request, function (error, response, body) {
-        logger.info(console.timeEnd(i));
+        console.timeEnd(i)
 
     });
   }
