@@ -1,5 +1,5 @@
 var mqtt = require('mqtt')
-var client  = mqtt.connect('mqtt://192.168.0.11:3000')
+var client  = mqtt.connect('mqtt://192.168.0.11')
  
 client.on('connect', function () {
   client.subscribe('/mobility002', function (err) {

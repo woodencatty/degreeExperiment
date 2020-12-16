@@ -13,13 +13,11 @@ process.on('uncaughtException', function(err) {
 var count = 0;
 
 
-var client  = mqtt.connect('mqtt://192.168.0.11:3000')
+var client  = mqtt.connect('mqtt://192.168.0.11')
 client.on('connect', function () {
   client.subscribe('/user002', function (err) {
     if (!err) {}
-
     });
-    
   })
 var setThread = setInterval(() => {
   count++;
@@ -28,11 +26,11 @@ var setThread = setInterval(() => {
       clearInterval(setThread);
       process.exit(1);
   }
-
 }, 1000);
 
 client.on('message', function (topic, message) {
   // message is Buffer
+  console.log(message);
   console.timeEnd(message.toString().substring(0, 5))
 })
 
