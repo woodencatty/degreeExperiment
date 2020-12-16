@@ -1,5 +1,4 @@
 const { exec } = require('child_process');
-const fs = require('fs');
 
 var count = 0;
 
@@ -9,12 +8,6 @@ var setThread = setInterval(() => {
     exec('node Client.js', (error, stdout, stderr) => {
 
 
-      var access = fs.createWriteStream('/sdcard/Download/client'+count+'_stats.log');
-      process.stdout.write = process.stderr.write = access.write.bind(access);
-      process.on('uncaughtException', function(err) {
-          //console.error((err && err.stack) ? err.stack : err);
-        });
-
         if (error) {
           console.error(`exec error: ${error}`);
           return;
@@ -23,7 +16,7 @@ var setThread = setInterval(() => {
         console.error(`stderr: ${stderr}`);
       });
       
-    if(count>3){
+    if(count>50){
         clearInterval(setThread);
     }
 
