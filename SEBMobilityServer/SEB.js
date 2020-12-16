@@ -1,5 +1,6 @@
 var mosca = require('mosca');
- 
+const request = require('request');
+
 var ascoltatore = {
   //using ascoltatore
   type: 'mongo',
