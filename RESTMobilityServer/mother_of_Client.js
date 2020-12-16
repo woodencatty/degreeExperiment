@@ -16,7 +16,7 @@ var setThread = setInterval(() => {
         console.error(`stderr: ${stderr}`);
       });
       
-    if(count>100){
+    if(count>10){
         clearInterval(setThread);
     }
 
