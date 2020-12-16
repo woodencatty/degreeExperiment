@@ -45,7 +45,7 @@ server.listen(port, function () {
 var user_request = {
   url: 'http://210.102.181.219:8080/request',
   headers: {
-      'packet': packet
+      'packet': "??"
   }
 };
 
