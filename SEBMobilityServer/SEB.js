@@ -42,15 +42,16 @@ server.listen(port, function () {
   console.log('server started and listening on port ', port)
 })
 
+var user_request = {
+  url: 'http://210.102.181.219:8080/request',
+  headers: {
+      'packet': packet
+  }
+};
 
 server.on('publish', (packet, client)=>{
 
-  var user_request = {
-    url: 'http://210.102.181.219:8080/request',
-    headers: {
-        'packet': packet
-    }
-  };
+  console.log("getit");
   console.log(packet);
   request(user_request, function (error, response, body) {
 
