@@ -3,7 +3,7 @@ const { exit } = require('process');
 const request = require('request');
 const fs = require('fs');
 
-var access = fs.createWriteStream('/sdcard/Download/client'+process.pid+'_stats.txt');
+var access = fs.createWriteStream('C:\Users\Woodencatty\Downloads\test\client'+process.pid+'_stats.txt');
 process.stdout.write = process.stderr.write = access.write.bind(access);
 process.on('uncaughtException', function(err) {
     //console.error((err && err.stack) ? err.stack : err);
