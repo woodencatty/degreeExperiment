@@ -24,7 +24,7 @@ server.on('clientConnected', function(client) {
           'packet': client.id.toString()
       }
     };
-    request(user_request, function (error, response, body) { console.log("gone");
+    request(user_request, function (error, response, body) { 
     })
 });
  
