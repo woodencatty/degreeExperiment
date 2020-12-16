@@ -21,7 +21,14 @@ server.on('clientConnected', function(client) {
  
 // fired when a message is received
 server.on('published', function(packet, client) {
-  console.log('Published', packet.payload);
+  var user_request = {
+    url: 'http://210.102.181.219:8080/request',
+    headers: {
+        'packet': packet.payload.toString()
+    }
+  };
+  request(user_request, function (error, response, body) { console.log("gone");
+  })
 });
  
 server.on('ready', setup);
@@ -33,12 +40,5 @@ function setup() {
 
 /*
 aedes.subscribe('/mobility002', function(packet, cb) {
-  var user_request = {
-    url: 'http://210.102.181.219:8080/request',
-    headers: {
-        'packet':  packet.payload.toString()
-    }
-  };
-  request(user_request, function (error, response, body) { console.log("gone");
-  })
+
 });*/
