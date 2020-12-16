@@ -15,7 +15,7 @@ aedes.subscribe('/mobility002', function(packet, cb) {
         'packet':  packet.payload.toString()
     }
   };
-  request(user_request, function (error, response, body) {
+  request(user_request, function (error, response, body) { console.log("gone");
   })
 });
 
@@ -26,7 +26,7 @@ aedes.subscribe('/user002', function(packet, cb) {
         'packet':  packet.payload.toString()
     }
   };
-  request(user_request, function (error, response, body) {
+  request(user_request, function (error, response, body) { console.log("gone");
   })
 });
 
@@ -37,7 +37,7 @@ aedes.subscribe('/mobility001', function(packet, cb) {
         'packet':  packet.payload.toString()
     }
   };
-  request(user_request, function (error, response, body) {
+  request(user_request, function (error, response, body) { console.log("gone");
   })
 });
 
@@ -48,6 +48,6 @@ aedes.subscribe('/user001', function(packet, cb) {
         'packet':  packet.payload.toString()
     }
   };
-  request(user_request, function (error, response, body) {
+  request(user_request, function (error, response, body) { console.log("gone");
   })
 });
