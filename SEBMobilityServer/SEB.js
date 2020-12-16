@@ -9,10 +9,13 @@ logger.format = function(level, date, message) {
     return message;
   };
 
-function compute() {
+  function compute() {
     pidusage(process.pid, function (err, stats) {
-        console.log("CPU : "+stats.cpu + "%")
+        console.log(stats.cpu)
+        total_cpu = total_cpu + stats.cpu;
         logger.info(stats.cpu);
+
+
       // => {
       //   cpu: 10.0,            // percentage (from 0 to 100*vcore)
       //   memory: 357306368,    // bytes
@@ -25,15 +28,14 @@ function compute() {
     })
   }
    
-function interval(time) {
-    setInterval(function() {
-      compute(function() {
-        interval(time)
-      })
-    }, time)
-  }
-
-  interval(1000)
+  var cpu_read = setInterval(function() {
+      compute();
+      count ++; 
+      if(count>62){
+        console.log("CPU average = " + total_cpu / 62 + "%");
+        clearInterval(cpu_read);
+      }
+    }, 1000)
 
 
 server.listen(port, function () {

@@ -5,7 +5,7 @@ var count = 0;
 var setThread = setInterval(() => {
     count++;
 
-    exec('node Client2.js', (error, stdout, stderr) => {
+    exec('node Client.js', (error, stdout, stderr) => {
 
 
         if (error) {
@@ -16,7 +16,7 @@ var setThread = setInterval(() => {
         console.error(`stderr: ${stderr}`);
       });
       
-    if(count>170){
+    if(count>10){
         clearInterval(setThread);
     }
 
