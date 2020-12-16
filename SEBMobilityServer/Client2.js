@@ -18,7 +18,7 @@ var count = 0;
 var setThread = setInterval(() => {
   count++;
   requestsent();
-  if(count>60){
+  if(count>10){
       clearInterval(setThread);
       process.exit(1);
   }

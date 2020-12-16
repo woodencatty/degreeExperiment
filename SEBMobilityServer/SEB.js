@@ -14,6 +14,38 @@ var settings = {
   backend: ascoltatore
 };
  
+
+function compute() {
+  pidusage(process.pid, function (err, stats) {
+      console.log(stats.cpu)
+      total_cpu = total_cpu + stats.cpu;
+      logger.info(stats.cpu);
+
+
+    // => {
+    //   cpu: 10.0,            // percentage (from 0 to 100*vcore)
+    //   memory: 357306368,    // bytes
+    //   ppid: 312,            // PPID
+    //   pid: 727,             // PID
+    //   ctime: 867000,        // ms user + system time
+    //   elapsed: 6650000,     // ms since the start of the process
+    //   timestamp: 864000000  // ms since epoch
+    // }
+  })
+}
+ 
+var cpu_read = setInterval(function() {
+    compute();
+    count ++; 
+    if(count>11){
+      console.log("CPU average = " + total_cpu / 11 + "%");
+      clearInterval(cpu_read);
+    }
+  }, 1000)
+
+
+
+
 var server = new mosca.Server(settings);
  
 server.on('clientConnected', function(client) {
