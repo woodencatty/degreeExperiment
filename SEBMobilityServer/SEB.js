@@ -49,15 +49,6 @@ var user_request = {
   }
 };
 
-server.published = function(packet, client, callback){
+server.published(packet, client, ()=>{
   console.log("getit");
-
-}
-
-server.on('publish', (packet, client)=>{
-
-  console.log(packet);
-  request(user_request, function (error, response, body) {
-
-});
 })
