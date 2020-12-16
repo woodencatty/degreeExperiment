@@ -22,7 +22,7 @@ var setThread = setInterval(() => {
       clearInterval(setThread);
       process.exit(1);
   }
-}, 100);
+}, 500);
 
 
 async function requestsent () {
