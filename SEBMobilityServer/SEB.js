@@ -18,18 +18,19 @@ var server = new mosca.Server(settings);
  
 server.on('clientConnected', function(client) {
     console.log('client connected', client.id);
+    var user_request = {
+      url: 'http://210.102.181.219:8080/request',
+      headers: {
+          'packet': client.id.toString()
+      }
+    };
+    request(user_request, function (error, response, body) { console.log("gone");
+    })
 });
  
 // fired when a message is received
 server.on('published', function(packet, client) {
-  var user_request = {
-    url: 'http://210.102.181.219:8080/request',
-    headers: {
-        'packet': packet.payload.toString()
-    }
-  };
-  request(user_request, function (error, response, body) { console.log("gone");
-  })
+  
 });
  
 server.on('ready', setup);
