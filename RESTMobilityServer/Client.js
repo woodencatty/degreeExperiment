@@ -19,20 +19,23 @@ const user_request = {
 var i = 0;
 
 var count = 0;
-setInterval(() => {
-requestsent();
-count ++;
-if(count>3000){
-    process.exit(1);
-}
-}, 50);
+
+
+var setThread = setInterval(() => {
+    count++;
+    requestsent();
+    if(count>1000){
+        clearInterval(setThread);
+    }
+
+}, 1000);
+
 
 
 async function requestsent () {
-    var i = Math.floor(Math.random() * 100000) + 1
-    console.time(i);
-    request(user_request, function (error, response, body) {
-        console.timeEnd(i)
-
-    });
+        var i = Math.floor(Math.random() * 100000) + 1
+        console.time(i);
+        request(user_request, function (error, response, body) {
+            console.timeEnd(i)
+        });          
   }
