@@ -1,32 +1,11 @@
-var mosca = require('mosca');
+var aedes = require('aedes')()
+var server = require('net').createServer(aedes.handle)
+var port = 3000
 
-var ascoltatore = {
-  //using ascoltatore
-  type: 'mongo',
-  url: 'mongodb://localhost:27017/mqtt',
-  pubsubCollection: 'ascoltatori',
-  mongo: {}
-};
-
-var settings = {
-  port: 3000,
-  backend: ascoltatore
-};
-
-var server = new mosca.Server(settings);
-
-server.on('clientConnected', function(client) {
-    console.log('client connected', client.id);
+server.listen(port, function() {
+  console.log('server listening on port', port);
 });
 
-// fired when a message is received
-server.on('published', function(packet, client) {
-  console.log('Published', packet.payload);
+aedes.subscribe('test', function(packet, cb) {
+  console.log('Published', packet.payload.toString());
 });
-
-server.on('ready', setup);
-
-// fired when the mqtt server is ready
-function setup() {
-  console.log('Mosca server is up and running');
-}
