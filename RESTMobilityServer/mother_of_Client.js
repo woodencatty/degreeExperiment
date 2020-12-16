@@ -20,7 +20,7 @@ var setThread = setInterval(() => {
         clearInterval(setThread);
     }
 
-}, 100);
+}, 10);
 
 
 
