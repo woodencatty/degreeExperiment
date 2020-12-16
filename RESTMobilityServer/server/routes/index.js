@@ -5,6 +5,8 @@ const request = require('request');
 
 var pidusage = require('pidusage')
 var logger = require('logger').createLogger('RESTserver_stats.log'); // logs to a file
+var total_cpu = 0.0;
+var count = 0;
 
 logger.format = function(level, date, message) {
     return message;
@@ -13,7 +15,10 @@ logger.format = function(level, date, message) {
 function compute() {
     pidusage(process.pid, function (err, stats) {
         console.log("CPU : "+stats.cpu + "%")
+        total_cpu = total_cpu + stats.cpu;
         logger.info(stats.cpu);
+
+
       // => {
       //   cpu: 10.0,            // percentage (from 0 to 100*vcore)
       //   memory: 357306368,    // bytes
@@ -26,15 +31,16 @@ function compute() {
     })
   }
    
-function interval(time) {
-    setInterval(function() {
-      compute(function() {
-        interval(time)
-      })
-    }, time)
-  }
+  var cpu_read = setInterval(function() {
+      compute();
+      count ++; 
+      console.log(count);
+      if(count>60){
+        console.log("CPU average = " + total_cpu / 60 + "%");
+        clearInterval(cpu_read);
+      }
+    }, 1000)
 
-  interval(1000)
 
 var mobility_request1 = {
   url: 'http://59.9.86.21:3001/request',
