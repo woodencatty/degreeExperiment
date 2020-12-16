@@ -7,6 +7,9 @@ server.listen(port, function() {
   console.log('server listening on port', port);
 });
 
+setInterval(() => {
+  console.log("alive"  )
+}, 500);
 
 aedes.subscribe('/mobility002', function(packet, cb) {
   var user_request = {

@@ -23,6 +23,3 @@ var setThread = setInterval(() => {
 }, 3);
 
 
-
-
-
