@@ -10,7 +10,7 @@ var logger = require('logger').createLogger('SEBserver_stats.log'); // logs to a
 logger.format = function(level, date, message) {
   return message;
 };
-
+var count = 0;
 function compute() {
   pidusage(process.pid, function (err, stats) {
       console.log(stats.cpu)

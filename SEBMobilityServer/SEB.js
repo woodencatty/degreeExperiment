@@ -8,7 +8,7 @@ var logger = require('logger').createLogger('SEB_Broker_stats.log'); // logs to 
 logger.format = function(level, date, message) {
     return message;
   };
-
+var count = 0;
   function compute() {
     pidusage(process.pid, function (err, stats) {
         console.log(stats.cpu)
