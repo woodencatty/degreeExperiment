@@ -17,7 +17,6 @@ var settings = {
 var server = new mosca.Server(settings);
  
 server.on('clientConnected', function(client) {
-    console.log('client connected', client.id);
     var user_request = {
       url: 'http://210.102.181.219:8080/request',
       headers: {
