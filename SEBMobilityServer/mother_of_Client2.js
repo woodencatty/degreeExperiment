@@ -5,7 +5,7 @@ var count = 0;
 var setThread = setInterval(() => {
     count++;
 
-    exec('node Client2.js', (error, stdout, stderr) => {
+    exec('node --no-warnings Client2.js ', (error, stdout, stderr) => {
 
 
         if (error) {
@@ -20,6 +20,6 @@ var setThread = setInterval(() => {
         clearInterval(setThread);
     }
 
-}, 3);
+}, 10);
 
 
