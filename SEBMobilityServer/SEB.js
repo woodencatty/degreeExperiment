@@ -1,6 +1,15 @@
 var mosca = require('mosca');
 const request = require('request');
+var pidusage = require('pidusage')
+var logger = require('logger').createLogger('RESTserver_stats.log'); // logs to a file
+var total_cpu = 0.0;
+var count = 0;
 
+logger.format = function(level, date, message) {
+    return message;
+  };
+
+  
 var ascoltatore = {
   //using ascoltatore
   type: 'mongo',
