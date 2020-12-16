@@ -14,7 +14,7 @@ logger.format = function(level, date, message) {
 
 function compute() {
     pidusage(process.pid, function (err, stats) {
-        console.log("CPU : "+stats.cpu + "%")
+        console.log(stats.cpu)
         total_cpu = total_cpu + stats.cpu;
         logger.info(stats.cpu);
 
