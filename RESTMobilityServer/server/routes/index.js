@@ -34,7 +34,6 @@ function compute() {
   var cpu_read = setInterval(function() {
       compute();
       count ++; 
-      console.log(count);
       if(count>62){
         console.log("CPU average = " + total_cpu / 62 + "%");
         clearInterval(cpu_read);
