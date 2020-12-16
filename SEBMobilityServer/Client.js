@@ -18,11 +18,11 @@ var count = 0;
 var setThread = setInterval(() => {
   count++;
   requestsent();
-  if(count>10){
+  if(count>600){
       clearInterval(setThread);
       process.exit(1);
   }
-}, 1000);
+}, 100);
 
 
 async function requestsent () {
