@@ -4,7 +4,7 @@ const port = 3000
 
 var pidusage = require('pidusage')
 var logger = require('logger').createLogger('SEB_Broker_stats.log'); // logs to a file
-
+total_cpu = 0.0;
 logger.format = function(level, date, message) {
     return message;
   };

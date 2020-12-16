@@ -6,6 +6,7 @@ const request = require('request');
 var pidusage = require('pidusage')
 var logger = require('logger').createLogger('SEBserver_stats.log'); // logs to a file
 
+total_cpu = 0.0;
 
 logger.format = function(level, date, message) {
   return message;
